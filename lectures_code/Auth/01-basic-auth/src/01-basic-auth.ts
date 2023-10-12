@@ -11,6 +11,7 @@ app.get('/',  function (req, res) {
     res.render('index', {user : req.user});
 });
 
+//auth.requiresAuthentication is used as middleware
 app.get('/private', auth.requiresAuthentication,  function (req, res) {  
     const username = req.user!.username; //using ! as we expect that auth.requiresAuthentication had done the job
 

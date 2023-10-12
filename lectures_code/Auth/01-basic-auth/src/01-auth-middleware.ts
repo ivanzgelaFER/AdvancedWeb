@@ -36,7 +36,7 @@ function setUserInfo(req : Request, res : Response, next : NextFunction) {
         
         const loginInfo = data.split(':');
         const username = loginInfo[0];
-        const password = loginInfo[1];        
+        const password = loginInfo[1];      
         if (password === 'some password') {
             req.user = { username };            
         }
