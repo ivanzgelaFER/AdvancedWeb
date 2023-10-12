@@ -1,0 +1,16 @@
+{
+  "name": "recipes-server",
+  "version": "1.0.0",
+  "description": "Dummy recipes server, returning list of recipes, CORS enabled and all...",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "igor.mekterovic@fer.hr",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
