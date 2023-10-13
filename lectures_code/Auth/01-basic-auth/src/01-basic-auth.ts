@@ -12,6 +12,7 @@ app.get('/',  function (req, res) {
 });
 
 //auth.requiresAuthentication is used as middleware
+//middleware is executed before the callback function
 app.get('/private', auth.requiresAuthentication,  function (req, res) {  
     const username = req.user!.username; //using ! as we expect that auth.requiresAuthentication had done the job
 

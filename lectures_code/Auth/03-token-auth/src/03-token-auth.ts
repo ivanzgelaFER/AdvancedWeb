@@ -36,7 +36,7 @@ app.post('/login',  function (req, res) {
     }
 });
 
-app.get('/protected', auth.requiresAuthentication, function (req, res) {      
+app.get('/protected', auth.requiresAuthentication, function (req, res) {   
     const username = req.user!.username;      
                    
     if (username.toLowerCase() === 'alice' || username.toLowerCase() === 'bob') {

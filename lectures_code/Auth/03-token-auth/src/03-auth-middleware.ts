@@ -35,7 +35,7 @@ declare global {
 }
 
 function setUserInfo(req : Request, res : Response, next : NextFunction) {  
-  const bearerToken = req.headers.authorization?.replace(/^Bearer /, '');   
+  const bearerToken = req.headers.authorization?.replace(/^Bearer /, '');
   if (bearerToken) {    
     try {         
       const token = jwt.verify(bearerToken, process.env.TOKEN_KEY);    
