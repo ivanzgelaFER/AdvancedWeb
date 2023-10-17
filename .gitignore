@@ -233,3 +233,9 @@ _Pvt_Extensions
 .fake/
 
 **/appsettings.json
+**/dist
+**/node_modules
+# dotenv environment variables file
+.env
+.env.test
+.env.production
