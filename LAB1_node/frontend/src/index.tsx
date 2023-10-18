@@ -4,14 +4,19 @@ import "./index.css";
 import { App } from "./App";
 import { PrivateRoute } from "./containers/Login/PrivateRoute";
 import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+import { store } from "./store/configureStore";
 
 const root = createRoot(document.getElementById("root")!);
+
 root.render(
-    <BrowserRouter>
-        <Routes>
-            <Route path="/*" element={<PrivateRoute path="/" component={App} />} />
-        </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/*" element={<PrivateRoute path="/" component={App} />} />
+            </Routes>
+        </BrowserRouter>
+    </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

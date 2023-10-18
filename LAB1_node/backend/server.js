@@ -1,9 +1,12 @@
+const cors = require('cors');
 const express = require('express');
+import { auth, requiresAuth } from 'express-openid-connect'; 
 
 const app = express();
 const port = 5000;
+app.use(cors());
 
-app.get('/login', (req, res) => {
+app.get('/api/login', (req, res) => {
   res.send('Hello World!');
 });
 

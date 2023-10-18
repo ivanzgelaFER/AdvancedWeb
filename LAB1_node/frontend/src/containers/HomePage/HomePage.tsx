@@ -9,6 +9,7 @@ export const HomePage = () => {
     const fetchBuildings = useCallback(async () => {
         try {
             const res = await login();
+            console.log(res);
         } catch (error) {
             console.log(error);
         }
@@ -17,5 +18,6 @@ export const HomePage = () => {
     useEffect(() => {
         fetchBuildings();
     }, [fetchBuildings]);
+
     return <div>Homa page resi</div>;
 };

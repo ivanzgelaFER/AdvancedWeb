@@ -1,17 +1,18 @@
-import { AxiosStatic } from "axios";
-import { UserData } from "../models/userData";
+import axios, { AxiosStatic } from "axios";
 
-/*
+
 if (window.location.hostname === "localhost") {
-    var port = 8080;
+    var port = 5000;
     axios.defaults.baseURL = "http://" + window.location.hostname + ":" + port + "/api";
 } else {
+    //this is for production version
     //axios.defaults.baseURL = "http://51.103.117.168:8080/api";
-}*/
+}
 
 const DEFAULT_API_VERSION = 3;
 
 export const configureAxiosClient = (axios: AxiosStatic) => {
+    /*
     axios.interceptors.request.use(config => {
         const userData = localStorage.getItem("user");
         if (userData) {
@@ -20,6 +21,7 @@ export const configureAxiosClient = (axios: AxiosStatic) => {
         }
         return config;
     });
+    */
     axios.interceptors.request.use(config => {
         const apiVersion = config.apiVersion ?? DEFAULT_API_VERSION;
         config.baseURL = config.baseURL ?? `/api/v${apiVersion}/`;
