@@ -3,7 +3,7 @@ import axios, { AxiosStatic } from "axios";
 
 if (window.location.hostname === "localhost") {
     var port = 5000;
-    axios.defaults.baseURL = "http://" + window.location.hostname + ":" + port + "/api";
+    axios.defaults.baseURL = "http://" + window.location.hostname + ":" + port;
 } else {
     //this is for production version
     //axios.defaults.baseURL = "http://51.103.117.168:8080/api";
