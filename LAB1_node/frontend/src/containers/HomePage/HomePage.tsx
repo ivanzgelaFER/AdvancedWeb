@@ -11,8 +11,8 @@ export const HomePage = () => {
 
     const fetchBuildings = useCallback(async () => {
         try {
-            const res = await login();
-            setInfo(res);
+            //const res = await login();
+            //setInfo(res);
         } catch (error) {
             console.log(error);
         }
@@ -25,11 +25,7 @@ export const HomePage = () => {
     return (
         <div>
             <h1>Home page</h1>
-            {!isAuthenticated ? (
-                <div>
-                    <button onClick={() => loginWithRedirect()}>Sign in</button>
-                </div>
-            ) : (
+            {isAuthenticated && (
                 <div>
                     <button onClick={() => logout()}>Logout</button>
                 </div>

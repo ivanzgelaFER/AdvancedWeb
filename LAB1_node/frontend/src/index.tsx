@@ -7,7 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { store } from "./store/configureStore";
 import { Auth0Provider } from "@auth0/auth0-react";
-import { Login } from "./containers/Login/Login";
+import { Competition } from "./containers/Competition/Competition";
 
 const root = createRoot(document.getElementById("root")!);
 
@@ -25,8 +25,8 @@ root.render(
         >
             <BrowserRouter>
                 <Routes>
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/*" element={<PrivateRoute path="/" component={App} />} />
+                    <Route path="/" element={<Competition />} />
+                    <Route path="/*" element={<PrivateRoute path="/private" component={App} />} />
                 </Routes>
             </BrowserRouter>
         </Auth0Provider>
