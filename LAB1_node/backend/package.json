@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -16,6 +17,7 @@
   "devDependencies": {
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.14",
-    "concurrently": "^7.4.0"
+    "concurrently": "^7.4.0",
+    "nodemon": "^3.0.1"
   }
 }

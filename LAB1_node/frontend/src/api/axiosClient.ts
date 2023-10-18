@@ -2,7 +2,7 @@ import axios, { AxiosStatic } from "axios";
 
 
 if (window.location.hostname === "localhost") {
-    var port = 5000;
+    var port = 8080;
     axios.defaults.baseURL = "http://" + window.location.hostname + ":" + port;
 } else {
     //this is for production version

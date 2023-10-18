@@ -1,15 +1,18 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./HomePage.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "../../api/login";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const HomePage = () => {
+    const { logout, isAuthenticated, loginWithRedirect, user, getAccessTokenSilently } = useAuth0();
     const dispatch = useDispatch();
+    const [info, setInfo] = useState();
 
     const fetchBuildings = useCallback(async () => {
         try {
             const res = await login();
-            console.log(res);
+            setInfo(res);
         } catch (error) {
             console.log(error);
         }
@@ -19,5 +22,18 @@ export const HomePage = () => {
         fetchBuildings();
     }, [fetchBuildings]);
 
-    return <div>Homa page resi</div>;
+    return (
+        <div>
+            <h1>Home page</h1>
+            {!isAuthenticated ? (
+                <div>
+                    <button onClick={() => loginWithRedirect()}>Sign in</button>
+                </div>
+            ) : (
+                <div>
+                    <button onClick={() => logout()}>Logout</button>
+                </div>
+            )}
+        </div>
+    );
 };
