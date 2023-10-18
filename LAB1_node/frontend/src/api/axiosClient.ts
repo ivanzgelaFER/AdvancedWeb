@@ -12,16 +12,6 @@ if (window.location.hostname === "localhost") {
 const DEFAULT_API_VERSION = 3;
 
 export const configureAxiosClient = (axios: AxiosStatic) => {
-    /*
-    axios.interceptors.request.use(config => {
-        const userData = localStorage.getItem("user");
-        if (userData) {
-            const user = JSON.parse(userData) as UserData;
-            config.headers!.Authorization = `Bearer ${user.token}`;
-        }
-        return config;
-    });
-    */
     axios.interceptors.request.use(config => {
         const apiVersion = config.apiVersion ?? DEFAULT_API_VERSION;
         config.baseURL = config.baseURL ?? `/api/v${apiVersion}/`;

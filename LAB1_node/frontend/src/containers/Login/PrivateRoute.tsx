@@ -6,10 +6,11 @@ type PrivateRouteProps = RouteProps & {
 };
 
 export const PrivateRoute = ({ component: Component, ...rest }: PrivateRouteProps) => {
-    const { isAuthenticated } = useAuth0();
+    const { isAuthenticated, getAccessTokenSilently } = useAuth0();
 
-    if (isAuthenticated) return <Component />;
-    else {
+    if (isAuthenticated) {
+        return <Component />;
+    } else {
         return <Navigate to="/" />;
     }
 };
