@@ -3,6 +3,7 @@ import "./HomePage.css";
 import { useDispatch } from "react-redux";
 import { login } from "../../api/login";
 import { useAuth0 } from "@auth0/auth0-react";
+import { addCompetition, getCompetitionById, getCompetitions } from "../../api/competition";
 
 export const HomePage = () => {
     const { logout, isAuthenticated, user, getAccessTokenSilently } = useAuth0();
@@ -11,7 +12,11 @@ export const HomePage = () => {
 
     const fetchBuildings = useCallback(async () => {
         try {
-            const res = await login();
+            //const res = await login();
+            //const res = await competition();
+            //const res = await getCompetitions();
+            //const res = await getCompetitionById("2");
+            await addCompetition();
             //setInfo(res);
         } catch (error) {
             console.log(error);

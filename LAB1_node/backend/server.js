@@ -5,12 +5,16 @@ const pg = require('pg');
 const db = require('./db');
 const session = require('express-session');
 const pgSession = require('connect-pg-simple')(session);
+const bodyParser = require('body-parser')
 var dotenv = require('dotenv');
 dotenv.config()
 
 const app = express();
 app.use(cors());
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+/*
 app.use(session({
   store: new pgSession({
       pool: db.pool,
@@ -19,7 +23,7 @@ app.use(session({
   secret: "web2_lab1",
   resave: false,
   saveUninitialized: true
-}))
+}))*/
 
 //ROUTES
 const authRoutes = require('./routes/auth.routes');
@@ -36,7 +40,7 @@ app.use(checkJwt);
 */
 
 app.use('/', authRoutes);
-app.use('/competitions', competitionRoutes);
+app.use('/competition', competitionRoutes);
 
 const port = 8080;
 app.listen(port, () => {
