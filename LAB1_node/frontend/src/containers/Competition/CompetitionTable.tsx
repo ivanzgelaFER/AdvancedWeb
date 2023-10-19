@@ -1,8 +1,7 @@
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Button } from "primereact/button";
+import { useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getCompetitions } from "../../api/competition";
 import { useNavigate } from "react-router-dom";
@@ -16,7 +15,6 @@ const cols = [
 
 export const CompetitionTable = () => {
     const navigate = useNavigate();
-    const { logout, isAuthenticated, user, getAccessTokenSilently } = useAuth0();
     const dispatch = useDispatch();
     const [competitions, setCompetitions] = useState<ICompetition[]>([]);
 
@@ -39,7 +37,13 @@ export const CompetitionTable = () => {
                 value={competitions}
                 showGridlines
                 emptyMessage={"No results yet"}
-                onRowClick={row => navigate(`/private`)}
+                onRowClick={row =>
+                    navigate(`/competition-details`, {
+                        state: {
+                            competition: competitions.find(x => x.id === row.data.id),
+                        },
+                    })
+                }
             >
                 {cols.map(col => {
                     return (
