@@ -10,12 +10,14 @@ configureAxiosClient(axios);
 
 export const App = () => {
     const location = useLocation();
-    const { getAccessTokenSilently } = useAuth0();
+    const { getIdTokenClaims, getAccessTokenSilently } = useAuth0();
 
     const getAccesToken = useCallback(async () => {
         try {
+            //const idTokenClaims = await getIdTokenClaims();
+            //const jwt: string = idTokenClaims?.__raw ?? "";
             const token = await getAccessTokenSilently();
-            localStorage.setItem("token", JSON.stringify(token));
+            localStorage.setItem("token", token);
         } catch (error) {
             console.log(error);
         }

@@ -64,7 +64,7 @@ const getdata = async () => {
     try {    
       // Get the access token from the Auth0 client
       const token = await auth0.getTokenSilently();      
-  
+      console.log(token);
       // Make the call to the API, setting the token
       // in the Authorization header
       const response = await fetch(`${serverUri}/protected`, {
