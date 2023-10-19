@@ -2,8 +2,8 @@ header {
     width: 100%;
     position: fixed;
     z-index: 2000;
-    height: 50px;
-    background-color: #363c42;
+    height: 60px;
+    background-color: var(--header-background);
     align-items: center;
 }
 

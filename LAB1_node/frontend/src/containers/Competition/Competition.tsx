@@ -1,5 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { Navigate } from "react-router-dom";
+import { CompetitionTable } from "./CompetitionTable";
 
 export const Competition = () => {
     const { isAuthenticated, isLoading } = useAuth0();
@@ -16,7 +17,8 @@ export const Competition = () => {
                         <Navigate to="/private" />
                     ) : (
                         <div>
-                            <h1>COMPETITION PAGE</h1>
+                            <h1>PUBLIC PAGE FOR COMPETITIONS</h1>
+                            <CompetitionTable />
                         </div>
                     )}
                 </>

@@ -1,5 +1,5 @@
 footer {
-    background-color: #363c42;
+    background-color: var(--header-background);
     color: rgb(255, 255, 255);
     height: 40px;
     display: flex;

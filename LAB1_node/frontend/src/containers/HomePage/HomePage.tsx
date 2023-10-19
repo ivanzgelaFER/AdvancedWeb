@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../../api/login";
 import { useAuth0 } from "@auth0/auth0-react";
 import { addCompetition, getCompetitionById, getCompetitions } from "../../api/competition";
+import { CompetitionTable } from "../Competition/CompetitionTable";
 
 export const HomePage = () => {
     const { logout, isAuthenticated, user, getAccessTokenSilently } = useAuth0();
@@ -31,11 +32,7 @@ export const HomePage = () => {
     return (
         <div>
             <h1>Home page</h1>
-            {isAuthenticated && (
-                <div>
-                    <button onClick={() => logout()}>Logout button</button>
-                </div>
-            )}
+            <CompetitionTable />
         </div>
     );
 };
