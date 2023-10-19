@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ICompetition } from "../models/competitions";
 
 export const getCompetitions = async () => {
     const res = await axios.get("/competition/all");
@@ -10,7 +11,6 @@ export const getCompetitionById = async (id: string) => {
     return res.data;
 };
 
-export const addCompetition = async () => {
-    var data = {name: "Axios natjecanje"};
+export const addCompetition = async (data: ICompetition) => {
     await axios.post("/competition/add", data);
 };

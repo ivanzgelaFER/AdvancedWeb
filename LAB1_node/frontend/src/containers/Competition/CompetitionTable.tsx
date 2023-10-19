@@ -13,34 +13,24 @@ const cols = [
     { field: "competitors", header: "Competitors", sortable: true },
 ];
 
-export const CompetitionTable = () => {
+interface Props {
+    competitionsData: ICompetition[];
+}
+
+export const CompetitionTable = ({ competitionsData }: Props) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [competitions, setCompetitions] = useState<ICompetition[]>([]);
-
-    const fetchCompetitions = useCallback(async () => {
-        try {
-            const res = await getCompetitions();
-            setCompetitions(res);
-        } catch (error) {
-            console.log(error);
-        }
-    }, [dispatch]);
-
-    useEffect(() => {
-        fetchCompetitions();
-    }, [fetchCompetitions]);
 
     return (
         <div className="competitions-table">
             <DataTable
-                value={competitions}
+                value={competitionsData}
                 showGridlines
                 emptyMessage={"No results yet"}
                 onRowClick={row =>
                     navigate(`/competition-details`, {
                         state: {
-                            competition: competitions.find(x => x.id === row.data.id),
+                            competition: competitionsData.find(x => x.id === row.data.id),
                         },
                     })
                 }

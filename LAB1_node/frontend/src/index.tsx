@@ -10,6 +10,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import { Competition } from "./containers/Competition/Competition";
 import { Layout } from "./containers/Layout/Layout";
 import "primereact/resources/primereact.min.css";
+import "primereact/resources/themes/lara-light-indigo/theme.css";
 import { CompetitionDetails } from "./containers/Competition/CompetitionDetails";
 
 const root = createRoot(document.getElementById("root")!);

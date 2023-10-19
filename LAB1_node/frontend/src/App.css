@@ -11,3 +11,30 @@ body {
         "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
         color: black !important;
 }
+
+.submit-buttons-in-modal {
+    display: flex;
+    justify-content: space-between;
+}
+
+.submit-buttons-in-modal > button:first-child {
+    background-color: var(--surface-700) !important;
+    border: 1px solid var(--surface-700) !important;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    /* max-width: 500px; */
+}
+  
+.form-container .field input,
+.form-container .field textarea {
+    width: 100%;
+}
+
+.form-container .field input,
+.form-container .field textarea {
+  width: 100%;
+}

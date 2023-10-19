@@ -28,12 +28,11 @@ const addCompetition = async (req, res) => {
     const sql = "insert into competition (name) values ('" + name + "')";
     try {
         await db.query(sql, []);
-        res.status(200);
     } catch (err) {
         console.log(err);
         throw err
     }
-    res.status(200);
+    res.sendStatus(200);
 }
 
 module.exports = {
