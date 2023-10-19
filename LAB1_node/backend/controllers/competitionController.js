@@ -25,7 +25,8 @@ const getCompetitionById = async (req, res) => {
 
 const addCompetition = async (req, res) => {
     const name = req.body.name;
-    const sql = "insert into competition (name) values ('" + name + "')";
+    const vrsta = req.body.vrsta;
+    const sql = "insert into competition (name, vrsta) values ('" + name + "', '" + vrsta + "')";
     try {
         await db.query(sql, []);
     } catch (err) {

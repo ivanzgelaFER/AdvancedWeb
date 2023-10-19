@@ -10,6 +10,7 @@ import "./Competition.css";
 
 const cols = [
     { field: "name", header: "Name", sortable: true },
+    { field: "vrsta", header: "Competition type", sortable: true },
     { field: "competitors", header: "Competitors", sortable: true },
 ];
 
@@ -19,7 +20,6 @@ interface Props {
 
 export const CompetitionTable = ({ competitionsData }: Props) => {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
 
     return (
         <div className="competitions-table">

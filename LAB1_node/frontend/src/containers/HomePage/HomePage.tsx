@@ -22,11 +22,11 @@ export const HomePage = () => {
         } catch (error) {
             console.log("Error while fetching competitions.");
         }
-    }, [dispatch]);
+    }, []);
 
     useEffect(() => {
         fetchCompetitions();
-    }, [fetchCompetitions, competitions]);
+    }, [fetchCompetitions, dialogOpen]);
 
     const handleAddNewCompetition = async (data: ICompetition) => {
         try {
@@ -68,6 +68,17 @@ export const HomePage = () => {
                                         <span>Competition Name</span>
                                         <span className="p-float-label">
                                             <InputText id="name" {...input} />
+                                        </span>
+                                    </div>
+                                )}
+                            />
+                            <Field
+                                name="vrsta"
+                                render={({ input }) => (
+                                    <div className="field">
+                                        <span>Competition type</span>
+                                        <span className="p-float-label">
+                                            <InputText id="vrsta" {...input} />
                                         </span>
                                     </div>
                                 )}
