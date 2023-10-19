@@ -1,23 +1,42 @@
 var express = require('express');
 var cors = require('cors');
 const { auth } = require('express-oauth2-jwt-bearer');
-var indexRouter = require('./routes/index.js');
+const pg = require('pg');
+const db = require('./db');
+const session = require('express-session');
+const pgSession = require('connect-pg-simple')(session);
 var dotenv = require('dotenv');
 dotenv.config()
 
 const app = express();
 app.use(cors());
 
-const authServer = 'https://dev-zxyjma4djioibxce.us.auth0.com';
+app.use(session({
+  store: new pgSession({
+      pool: db.pool,
+  }),
 
+  secret: "web2_lab1",
+  resave: false,
+  saveUninitialized: true
+}))
+
+//ROUTES
+const authRoutes = require('./routes/auth.routes');
+const competitionRoutes = require('./routes/competition.routes');
+
+/*
+const authServer = 'https://dev-zxyjma4djioibxce.us.auth0.com';
 const checkJwt = auth({
   audience: 'lab1_api2',
   issuerBaseURL: `${authServer}`,
   tokenSigningAlg: "RS256"
 });
 app.use(checkJwt);
+*/
 
-app.use('/', indexRouter);
+app.use('/', authRoutes);
+app.use('/competitions', competitionRoutes);
 
 const port = 8080;
 app.listen(port, () => {
