@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/configureStore";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { Competition } from "./containers/Competition/Competition";
+import { Layout } from "./containers/Layout/Layout";
 
 const root = createRoot(document.getElementById("root")!);
 
@@ -24,10 +25,15 @@ root.render(
             }}
         >
             <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<Competition />} />
-                    <Route path="/*" element={<PrivateRoute path="/private" component={App} />} />
-                </Routes>
+                <Layout>
+                    <Routes>
+                        <Route path="/" element={<Competition />} />
+                        <Route
+                            path="/*"
+                            element={<PrivateRoute path="/private" component={App} />}
+                        />
+                    </Routes>
+                </Layout>
             </BrowserRouter>
         </Auth0Provider>
     </Provider>

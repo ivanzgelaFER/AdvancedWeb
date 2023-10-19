@@ -12,12 +12,13 @@ export const HomePage = () => {
 
     const fetchBuildings = useCallback(async () => {
         try {
-            //const res = await login();
+            const res = await login();
             //const res = await competition();
             //const res = await getCompetitions();
             //const res = await getCompetitionById("2");
-            await addCompetition();
+            //await addCompetition();
             //setInfo(res);
+            console.log(res);
         } catch (error) {
             console.log(error);
         }
@@ -32,7 +33,7 @@ export const HomePage = () => {
             <h1>Home page</h1>
             {isAuthenticated && (
                 <div>
-                    <button onClick={() => logout()}>Logout</button>
+                    <button onClick={() => logout()}>Logout button</button>
                 </div>
             )}
         </div>

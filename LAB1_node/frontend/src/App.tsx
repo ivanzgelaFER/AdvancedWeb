@@ -5,6 +5,7 @@ import { HomePage } from "./containers/HomePage/HomePage";
 import { configureAxiosClient } from "./api/axiosClient";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useCallback, useEffect } from "react";
+import "./App.css";
 
 configureAxiosClient(axios);
 
@@ -28,10 +29,8 @@ export const App = () => {
     }, [getAccesToken]);
 
     return (
-        <Layout>
-            <Routes location={location}>
-                <Route index path="*" element={<HomePage />} />
-            </Routes>
-        </Layout>
+        <Routes location={location}>
+            <Route index path="*" element={<HomePage />} />
+        </Routes>
     );
 };

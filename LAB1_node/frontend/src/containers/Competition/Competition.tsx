@@ -1,20 +1,26 @@
 import { useAuth0 } from "@auth0/auth0-react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export const Competition = () => {
-    const { logout, isAuthenticated, loginWithRedirect, user, getAccessTokenSilently } = useAuth0();
-    const navigate = useNavigate;
+    const { isAuthenticated, isLoading } = useAuth0();
 
     return (
-        <div>
-            <h1>COMPETITION PAGE</h1>
-            {!isAuthenticated ? (
+        <>
+            {isLoading ? (
                 <div>
-                    <button onClick={() => loginWithRedirect()}>Sign in</button>
+                    <h1>Loading...</h1>
                 </div>
             ) : (
-                <Navigate to="/private" />
+                <>
+                    {isAuthenticated ? (
+                        <Navigate to="/private" />
+                    ) : (
+                        <div>
+                            <h1>COMPETITION PAGE</h1>
+                        </div>
+                    )}
+                </>
             )}
-        </div>
+        </>
     );
 };
