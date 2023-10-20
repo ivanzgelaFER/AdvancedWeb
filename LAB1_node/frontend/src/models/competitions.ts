@@ -1,3 +1,9 @@
+import { ITournament } from "./tournament";
+
+export interface ICompetitor {
+    name?: string;
+}
+
 export interface ICompetition {
     id?: number;
     name?: string;
@@ -6,6 +12,7 @@ export interface ICompetition {
     win?: number;
     draw?: number;
     lose?: number;
+    tournament?: ITournament
 }
 
 export const competitionInit: ICompetition = {
@@ -17,15 +24,3 @@ export const competitionInit: ICompetition = {
     lose: 0
 };
 
-export interface ICompetitor {
-    name?: string;
-}
-
-export interface IPair {
-    player1: ICompetitor;
-    player2: ICompetitor;
-}
-
-export interface ITournament {
-    rounds: IPair[][];
-}

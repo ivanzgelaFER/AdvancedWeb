@@ -5,6 +5,6 @@ const controller = require('../controllers/competitionController')
 router.get('/all', controller.getCompetitions);
 router.get('/:id', controller.getCompetitionById);
 router.post('/add', controller.addCompetition);
-router.delete('/:id', controller.deleteCompetition);
+router.delete('/:id/:name', controller.deleteCompetition);
 
 module.exports = router;

@@ -26,9 +26,20 @@ const getCompetitionById = async (req, res) => {
 const addCompetition = async (req, res) => {
     const name = req.body.name;
     const vrsta = req.body.vrsta;
-    const sql = "insert into competition (name, vrsta) values ('" + name + "', '" + vrsta + "')";
+    const rounds = req.body.tournament.rounds;
+    const createCompetition = "insert into competition (name, vrsta) values ('" + name + "', '" + vrsta + "')";
     try {
-        await db.query(sql, []);
+        await db.query(createCompetition, []);
+        
+        rounds.forEach((k, i) => {
+            const round = i + 1;
+            k.forEach(async (p) => {
+                const player1 = p.player1.name;
+                const player2 = p.player2.name;
+                const createGame = "insert into game (round, player1, player2, competition) values ('" + round + "', '" + player1 + "', '" + player2 + "', '" + name + "')";
+                await db.query(createGame, []);
+            });
+        });
     } catch (err) {
         console.log(err);
         throw err
@@ -38,9 +49,12 @@ const addCompetition = async (req, res) => {
 
 const deleteCompetition = async (req, res) => {
     const id = req.params.id;
-    const sql = `delete from competition where id = ${id}`;
+    const sql1 = `delete from competition where id = ${id}`;
+    const name = req.params.name
+    const sql2 = "delete from game where competition = '" + name + "'";
     try {
-        await db.query(sql, []);
+        await db.query(sql1, []);
+        await db.query(sql2, []);
     } catch (err) {
         console.log(err);
         throw err

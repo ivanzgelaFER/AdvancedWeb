@@ -23,7 +23,7 @@ export const CompetitionTable = ({ competitionsData, fetchCompetition }: Props) 
 
     const handleDeleteCompetiton = async (competition: ICompetition) => {
         try {
-            await deleteCompetition(competition.id!);
+            await deleteCompetition(competition.id!, competition.name!);
             fetchCompetition();
         } catch (err) {
             console.log(err);

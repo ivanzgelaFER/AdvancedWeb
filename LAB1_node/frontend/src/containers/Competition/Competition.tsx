@@ -9,8 +9,8 @@ import { useDispatch } from "react-redux";
 export const Competition = () => {
     const { isAuthenticated, isLoading } = useAuth0();
     const [competitions, setCompetitions] = useState<ICompetition[]>([]);
-    const dispatch = useDispatch();
 
+    const dispatch = useDispatch();
     const fetchCompetitions = useCallback(async () => {
         try {
             const res = await getCompetitions();

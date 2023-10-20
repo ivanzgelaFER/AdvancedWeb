@@ -56,8 +56,10 @@ export const HomePage = () => {
     };
     const handleAddNewCompetition = async (data: ICompetition) => {
         const tournament = createTournament(data.competitors!);
+        data.tournament = tournament;
         try {
-            //await addCompetition(data);
+            console.log(tournament);
+            await addCompetition(data);
         } catch (error) {
             console.log("An error has occurred while adding a new satellite.");
         } finally {
