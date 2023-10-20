@@ -1,7 +1,7 @@
 import "./HomePage.css";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getCompetitions } from "../../api/competition";
+import { addCompetition, getCompetitions } from "../../api/competition";
 import { CompetitionTable } from "../Competition/CompetitionTable";
 import { Dialog } from "primereact/dialog";
 import { Field, FieldMetaState, Form } from "react-final-form";
@@ -10,6 +10,7 @@ import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import "primereact/resources/primereact.min.css";
 import { InputNumber, InputNumberChangeEvent } from "primereact/inputnumber";
+import { createTournament } from "../../helpers/generateTurnament";
 
 export const HomePage = () => {
     const dispatch = useDispatch();
@@ -54,9 +55,8 @@ export const HomePage = () => {
         return errors;
     };
     const handleAddNewCompetition = async (data: ICompetition) => {
+        const tournament = createTournament(data.competitors!);
         try {
-            console.log("!!!!!!!!!!!!!");
-            console.log(data);
             //await addCompetition(data);
         } catch (error) {
             console.log("An error has occurred while adding a new satellite.");
@@ -78,7 +78,10 @@ export const HomePage = () => {
             <div>
                 <Button label="Add New Competition" onClick={() => setDialogOpen(true)} />
             </div>
-            <CompetitionTable competitionsData={competitions} />
+            <CompetitionTable
+                competitionsData={competitions}
+                fetchCompetition={fetchCompetitions}
+            />
             <Dialog
                 visible={dialogOpen}
                 id="new-competition"

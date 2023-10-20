@@ -36,8 +36,21 @@ const addCompetition = async (req, res) => {
     res.sendStatus(200);
 }
 
+const deleteCompetition = async (req, res) => {
+    const id = req.params.id;
+    const sql = `delete from competition where id = ${id}`;
+    try {
+        await db.query(sql, []);
+    } catch (err) {
+        console.log(err);
+        throw err
+    }
+    res.sendStatus(200);
+}
+
 module.exports = {
     getCompetitions,
     getCompetitionById,
-    addCompetition
+    addCompetition,
+    deleteCompetition
 }

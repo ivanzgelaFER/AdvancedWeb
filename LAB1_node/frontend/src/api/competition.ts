@@ -15,3 +15,7 @@ export const addCompetition = async (data: ICompetition) => {
     await axios.post("/competition/add", data);
 };
 
+export const deleteCompetition = async (id: number) => {
+    await axios.delete(`/competition/${id}`);
+}
+

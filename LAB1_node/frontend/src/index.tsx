@@ -12,6 +12,7 @@ import { Layout } from "./containers/Layout/Layout";
 import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import { CompetitionDetails } from "./containers/Competition/CompetitionDetails";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 const root = createRoot(document.getElementById("root")!);
 

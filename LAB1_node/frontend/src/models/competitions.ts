@@ -20,3 +20,12 @@ export const competitionInit: ICompetition = {
 export interface ICompetitor {
     name?: string;
 }
+
+export interface IPair {
+    player1: ICompetitor;
+    player2: ICompetitor;
+}
+
+export interface ITournament {
+    rounds: IPair[][];
+}

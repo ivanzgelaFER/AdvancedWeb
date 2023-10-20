@@ -3,6 +3,9 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { ICompetition } from "../../models/competitions";
 import { useNavigate } from "react-router-dom";
+import { Button } from "primereact/button";
+import { deleteCompetition } from "../../api/competition";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const cols = [
     { field: "name", header: "Name", sortable: true },
@@ -11,10 +14,34 @@ const cols = [
 
 interface Props {
     competitionsData: ICompetition[];
+    fetchCompetition: () => Promise<void>;
 }
 
-export const CompetitionTable = ({ competitionsData }: Props) => {
+export const CompetitionTable = ({ competitionsData, fetchCompetition }: Props) => {
     const navigate = useNavigate();
+    const { isAuthenticated } = useAuth0();
+
+    const handleDeleteCompetiton = async (competition: ICompetition) => {
+        try {
+            await deleteCompetition(competition.id!);
+            fetchCompetition();
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    const actionColumnDelete = (rowData: ICompetition) => {
+        return (
+            <Button
+                className="button-delete-competition"
+                //tooltip={"Obriši"} POKAZUJE SE ISPOD FOOTERA IZ NEKOG RAZLOGA
+                icon="fa fa-trash"
+                onClick={() => {
+                    handleDeleteCompetiton(rowData);
+                }}
+            />
+        );
+    };
 
     return (
         <div className="competitions-table">
@@ -41,6 +68,14 @@ export const CompetitionTable = ({ competitionsData }: Props) => {
                         />
                     );
                 })}
+                {isAuthenticated && (
+                    <Column
+                        className="button-delete-competition-column"
+                        key={"delete"}
+                        header={"Obriši"}
+                        body={actionColumnDelete}
+                    />
+                )}
             </DataTable>
         </div>
     );

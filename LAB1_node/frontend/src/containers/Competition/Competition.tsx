@@ -37,7 +37,10 @@ export const Competition = () => {
                     ) : (
                         <div>
                             <h1>PUBLIC PAGE FOR COMPETITIONS</h1>
-                            <CompetitionTable competitionsData={competitions} />
+                            <CompetitionTable
+                                competitionsData={competitions}
+                                fetchCompetition={fetchCompetitions}
+                            />
                         </div>
                     )}
                 </>
