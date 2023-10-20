@@ -11,7 +11,7 @@ export interface ICompetition {
 export const competitionInit: ICompetition = {
     name: "",
     vrsta: "",
-    competitors: [],
+    competitors: [{name: ""}, {name: ""}, {name: ""}, {name: ""}, {name: ""}, {name: ""}, {name: ""}, {name: ""}],
     win: 0,
     draw: 0,
     lose: 0

@@ -1,7 +1,7 @@
 import "./HomePage.css";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { addCompetition, getCompetitions } from "../../api/competition";
+import { getCompetitions } from "../../api/competition";
 import { CompetitionTable } from "../Competition/CompetitionTable";
 import { Dialog } from "primereact/dialog";
 import { Field, FieldMetaState, Form } from "react-final-form";
@@ -10,14 +10,11 @@ import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 import "primereact/resources/primereact.min.css";
 import { InputNumber, InputNumberChangeEvent } from "primereact/inputnumber";
-import { classNames } from "primereact/utils";
 
 export const HomePage = () => {
     const dispatch = useDispatch();
     const [dialogOpen, setDialogOpen] = useState(false);
     const [competitions, setCompetitions] = useState<ICompetition[]>([]);
-    const [errorMessage, setErrorMessage] = useState("");
-    const [existingError, setExistingError] = useState(false);
 
     const fetchCompetitions = useCallback(async () => {
         try {
@@ -32,18 +29,18 @@ export const HomePage = () => {
         fetchCompetitions();
     }, [fetchCompetitions, dialogOpen]);
 
-    const handleError = (data: ICompetition) => {
-        let errors: string[] = [];
-        if (data.name === "") {
-            errors.push("Name");
-        }
-        if (data.vrsta === "") {
-            errors.push("Competition type");
-        }
-        if (data.competitors === undefined || data.competitors?.length < 4) {
-            errors.push("Min 4 competitors");
+    const validate = (data: ICompetition) => {
+        const errors: any = {};
+        if (data.name === "" || data.name === undefined) errors.name = "Name required";
+        if (data.vrsta === "" || data.vrsta === undefined) {
+            errors.vrsta = "Type required";
         }
 
+        data.competitors?.forEach((c, index) => {
+            if (index <= 3 && (c.name === undefined || c.name === "")) {
+                errors.lose = "Minimum 4 competitors required";
+            }
+        });
         if (
             data.win === undefined ||
             data.draw === undefined ||
@@ -52,33 +49,19 @@ export const HomePage = () => {
             data.draw < 0 ||
             data.lose < 0
         ) {
-            errors.push("Scoring must be positive");
+            errors.draw = "Only positive numbers allowed   ";
         }
-        if (errors.length > 0) {
-            setExistingError(true);
-        } else {
-            setExistingError(false);
-        }
-        let mess = errors.join(", ");
-        if (errors.length > 0) mess = mess.concat(" required.");
-        setErrorMessage(mess);
+        return errors;
     };
-
     const handleAddNewCompetition = async (data: ICompetition) => {
-        handleError(data);
         try {
-            console.log(existingError);
-            if (!existingError) {
-                console.log("!!!!!!!!!!!!!");
-                //await addCompetition(data);
-            }
+            console.log("!!!!!!!!!!!!!");
+            console.log(data);
+            //await addCompetition(data);
         } catch (error) {
             console.log("An error has occurred while adding a new satellite.");
         } finally {
-            if (!existingError) {
-                setDialogOpen(false);
-                setErrorMessage("");
-            }
+            setDialogOpen(false);
         }
     };
 
@@ -106,6 +89,7 @@ export const HomePage = () => {
                 <Form
                     onSubmit={(data: ICompetition) => handleAddNewCompetition(data)}
                     initialValues={competitionInit}
+                    validate={validate}
                     render={({ handleSubmit, values }) => (
                         <form
                             id="new-competition"
@@ -116,110 +100,116 @@ export const HomePage = () => {
                             <div className="form-container-competition">
                                 <Field
                                     name="name"
-                                    render={({ input }) => (
+                                    render={({ input, meta }) => (
                                         <div className="field">
                                             <span>Competition Name</span>
                                             <span className="p-float-label">
                                                 <InputText id="name" {...input} />
                                             </span>
+                                            {getFormErrorMessage(meta)}
                                         </div>
                                     )}
                                 />
                                 <Field
                                     name="vrsta"
-                                    render={({ input }) => (
+                                    render={({ input, meta }) => (
                                         <div className="field">
                                             <span>Competition type</span>
                                             <span className="p-float-label">
                                                 <InputText id="vrsta" {...input} />
                                             </span>
+                                            {getFormErrorMessage(meta)}
                                         </div>
                                     )}
                                 />
                                 <Field
-                                    name="competitors[0]"
-                                    render={({ input }) => (
+                                    name="competitors[0].name"
+                                    render={({ input, meta }) => (
                                         <div className="field">
                                             <span>Competitor 1</span>
                                             <span className="p-float-label">
-                                                <InputText id="competitors[0]" {...input} />
+                                                <InputText id="competitors[0].name" {...input} />
                                             </span>
+                                            {getFormErrorMessage(meta)}
                                         </div>
                                     )}
                                 />
                                 <Field
-                                    name="competitors[1]"
-                                    render={({ input }) => (
+                                    name={`competitors[1].name`}
+                                    render={({ input, meta }) => (
                                         <div className="field">
                                             <span>Competitor 2</span>
                                             <span className="p-float-label">
-                                                <InputText id="competitors[1]" {...input} />
+                                                <InputText id="competitors[1].name" {...input} />
                                             </span>
+                                            {getFormErrorMessage(meta)}
                                         </div>
                                     )}
                                 />
                                 <Field
-                                    name="competitors[2]"
-                                    render={({ input }) => (
+                                    name="competitors[2].name"
+                                    render={({ input, meta }) => (
                                         <div className="field">
                                             <span>Competitor 3</span>
                                             <span className="p-float-label">
-                                                <InputText id="competitors[2]" {...input} />
+                                                <InputText id="competitors[2].name" {...input} />
                                             </span>
+                                            {getFormErrorMessage(meta)}
                                         </div>
                                     )}
                                 />
                                 <Field
-                                    name="competitors[3]"
-                                    render={({ input }) => (
+                                    name="competitors[3].name"
+                                    render={({ input, meta }) => (
                                         <div className="field">
                                             <span>Competitor 4</span>
                                             <span className="p-float-label">
-                                                <InputText id="competitors[3]" {...input} />
+                                                <InputText id="competitors[3].name" {...input} />
                                             </span>
+                                            {getFormErrorMessage(meta)}
                                         </div>
                                     )}
                                 />
                                 <Field
-                                    name="competitors[4]"
+                                    name="competitors[4].name"
                                     render={({ input }) => (
                                         <div className="field">
                                             <span>Competitor 5</span>
                                             <span className="p-float-label">
-                                                <InputText id="competitors[4]" {...input} />
+                                                <InputText id="competitors[4].name" {...input} />
                                             </span>
                                         </div>
                                     )}
                                 />
                                 <Field
-                                    name="competitors[5]"
+                                    name="competitors[5].name"
                                     render={({ input }) => (
                                         <div className="field">
                                             <span>Competitor 6</span>
                                             <span className="p-float-label">
-                                                <InputText id="competitors[5]" {...input} />
+                                                <InputText id="competitors[5].name" {...input} />
                                             </span>
                                         </div>
                                     )}
                                 />
                                 <Field
-                                    name="competitors[6]"
+                                    name="competitors[6].name"
                                     render={({ input }) => (
                                         <div className="field">
                                             <span>Competitor 7</span>
                                             <span className="p-float-label">
-                                                <InputText id="competitors[6]" {...input} />
+                                                <InputText id="competitors[6].name" {...input} />
                                             </span>
                                         </div>
                                     )}
                                 />
                                 <Field
-                                    name="competitors[7]"
+                                    name="competitors[7].name"
                                     render={({ input }) => (
                                         <div className="field">
                                             <span>Competitor 8</span>
                                             <span className="p-float-label">
-                                                <InputText id="competitors[7]" {...input} />
+                                                <InputText id="competitors[7].name" {...input} />
                                             </span>
                                         </div>
                                     )}
@@ -232,7 +222,7 @@ export const HomePage = () => {
                                 </div>
                                 <Field
                                     name="win"
-                                    render={({ input }) => (
+                                    render={({ input, meta }) => (
                                         <div className="field">
                                             <span>Win</span>
                                             <span className="p-float-label">
@@ -245,12 +235,13 @@ export const HomePage = () => {
                                                     value={values.win}
                                                 />
                                             </span>
+                                            {getFormErrorMessage(meta)}
                                         </div>
                                     )}
                                 />
                                 <Field
                                     name="draw"
-                                    render={({ input }) => (
+                                    render={({ input, meta }) => (
                                         <div className="field">
                                             <span>Draw</span>
                                             <span className="p-float-label">
@@ -263,12 +254,13 @@ export const HomePage = () => {
                                                     value={values.draw}
                                                 />
                                             </span>
+                                            {getFormErrorMessage(meta)}
                                         </div>
                                     )}
                                 />
                                 <Field
                                     name="lose"
-                                    render={({ input }) => (
+                                    render={({ input, meta }) => (
                                         <div className="field">
                                             <span>Lose</span>
                                             <span className="p-float-label">
@@ -281,11 +273,11 @@ export const HomePage = () => {
                                                     value={values.lose}
                                                 />
                                             </span>
+                                            {getFormErrorMessage(meta)}
                                         </div>
                                     )}
                                 />
                             </div>
-                            <div className="error-text">{errorMessage}</div>
                             <div className="submit-buttons-in-modal">
                                 <Button
                                     label="Cancel"
