@@ -14,3 +14,4 @@ export const getCompetitionById = async (id: string) => {
 export const addCompetition = async (data: ICompetition) => {
     await axios.post("/competition/add", data);
 };
+

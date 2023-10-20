@@ -1,17 +1,12 @@
+import "./Competition.css";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
-import { useCallback, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useAuth0 } from "@auth0/auth0-react";
-import { getCompetitions } from "../../api/competition";
-import { useNavigate } from "react-router-dom";
 import { ICompetition } from "../../models/competitions";
-import "./Competition.css";
+import { useNavigate } from "react-router-dom";
 
 const cols = [
     { field: "name", header: "Name", sortable: true },
     { field: "vrsta", header: "Competition type", sortable: true },
-    { field: "competitors", header: "Competitors", sortable: true },
 ];
 
 interface Props {
@@ -23,6 +18,7 @@ export const CompetitionTable = ({ competitionsData }: Props) => {
 
     return (
         <div className="competitions-table">
+            <h3>For more details about specific competition click on table row!</h3>
             <DataTable
                 value={competitionsData}
                 showGridlines
