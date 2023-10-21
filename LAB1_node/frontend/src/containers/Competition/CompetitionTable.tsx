@@ -50,13 +50,21 @@ export const CompetitionTable = ({ competitionsData, fetchCompetition }: Props) 
                 value={competitionsData}
                 showGridlines
                 emptyMessage={"No results yet"}
-                onRowClick={row =>
-                    navigate(`/competition-details`, {
-                        state: {
-                            competition: competitionsData.find(x => x.id === row.data.id),
-                        },
-                    })
-                }
+                onRowClick={row => {
+                    if (isAuthenticated) {
+                        navigate(`/competition-details-protected`, {
+                            state: {
+                                competition: competitionsData.find(x => x.id === row.data.id),
+                            },
+                        });
+                    } else {
+                        navigate(`/competition-details`, {
+                            state: {
+                                competition: competitionsData.find(x => x.id === row.data.id),
+                            },
+                        });
+                    }
+                }}
             >
                 {cols.map(col => {
                     return (

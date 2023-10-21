@@ -6,6 +6,7 @@ import { configureAxiosClient } from "./api/axiosClient";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useCallback, useEffect } from "react";
 import { CompetitionDetails } from "./containers/Competition/CompetitionDetails";
+import { CompetitionDetailsProtected } from "./containers/Competition/CompetitionDetailsProtected";
 
 configureAxiosClient(axios);
 
@@ -31,7 +32,10 @@ export const App = () => {
     return (
         <Routes location={location}>
             <Route index path="*" element={<HomePage />} />
-            <Route path={"/competition-details"} element={<CompetitionDetails />} />
+            <Route
+                path={"/competition-details-protected"}
+                element={<CompetitionDetailsProtected />}
+            />
         </Routes>
     );
 };

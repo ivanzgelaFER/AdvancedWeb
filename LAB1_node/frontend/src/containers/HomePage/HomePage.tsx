@@ -13,7 +13,6 @@ import { InputNumber, InputNumberChangeEvent } from "primereact/inputnumber";
 import { createTournament } from "../../helpers/generateTurnament";
 
 export const HomePage = () => {
-    const dispatch = useDispatch();
     const [dialogOpen, setDialogOpen] = useState(false);
     const [competitions, setCompetitions] = useState<ICompetition[]>([]);
 
@@ -58,7 +57,6 @@ export const HomePage = () => {
         const tournament = createTournament(data.competitors!);
         data.tournament = tournament;
         try {
-            console.log(tournament);
             await addCompetition(data);
         } catch (error) {
             console.log("An error has occurred while adding a new satellite.");

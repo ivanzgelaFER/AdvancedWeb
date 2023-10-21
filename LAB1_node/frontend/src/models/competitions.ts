@@ -24,3 +24,23 @@ export const competitionInit: ICompetition = {
     lose: 0
 };
 
+export interface ICompData {
+    competition?: ICompetition,
+    games?: IGame[]
+}
+
+export interface IGame {
+    id: number,
+    round: string,
+    player1: string,
+    player2: string,
+    result: number
+}
+
+ 
+
+export interface IRankingData {
+    player: string,
+    points: number
+}
+
