@@ -1,7 +1,5 @@
 {
   "scripts": {
-    "build": "npm run clean && tsc",
-    "clean": "if exist dist rmdir /s /q dist",
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
