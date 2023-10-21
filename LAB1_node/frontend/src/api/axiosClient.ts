@@ -6,7 +6,7 @@ if (window.location.hostname === "localhost") {
     axios.defaults.baseURL = "http://" + window.location.hostname + ":" + port;
 } else {
     //this is for production version
-    //axios.defaults.baseURL = "http://51.103.117.168:8080/api";
+    axios.defaults.baseURL = "https://lab1-web2.onrender.com";
 }
 
 const DEFAULT_API_VERSION = 3;
