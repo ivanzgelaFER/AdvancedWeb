@@ -5,7 +5,6 @@ import { HomePage } from "./containers/HomePage/HomePage";
 import { configureAxiosClient } from "./api/axiosClient";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useCallback, useEffect } from "react";
-import { CompetitionDetails } from "./containers/Competition/CompetitionDetails";
 import { CompetitionDetailsProtected } from "./containers/Competition/CompetitionDetailsProtected";
 
 configureAxiosClient(axios);
