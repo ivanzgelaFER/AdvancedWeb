@@ -8,7 +8,7 @@ const pool = new Pool({
     database: process.env.DB_DATABASE,
     password: process.env.DB_PASS,
     port: 5432,
-    ssl: true  //za produkciju ovo moras izmijeniti, treb ti https umjesto http na kojoj je sad
+    //ssl: true  //za produkciju ovo moras izmijeniti, treb ti https umjesto http na kojoj je sad
 });
 
 module.exports = {
