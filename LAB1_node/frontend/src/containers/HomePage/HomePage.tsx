@@ -72,7 +72,7 @@ export const HomePage = () => {
     return (
         <div>
             <div>
-                <Button title="Add New Competition" onClick={() => setDialogOpen(true)} />
+                <Button label="Add New Competition" onClick={() => setDialogOpen(true)} />
             </div>
             <CompetitionTable
                 competitionsData={competitions}
