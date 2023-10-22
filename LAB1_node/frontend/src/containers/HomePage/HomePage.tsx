@@ -1,6 +1,5 @@
 import "./HomePage.css";
 import { useCallback, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
 import { addCompetition, getCompetitions } from "../../api/competition";
 import { CompetitionTable } from "../Competition/CompetitionTable";
 import { Dialog } from "primereact/dialog";

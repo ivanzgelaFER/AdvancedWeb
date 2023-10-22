@@ -1,19 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {
-    ICompData,
-    ICompetition,
-    IGame,
-    IRankingData,
-    competitionInit,
-} from "../../models/competitions";
-import { addCompetition, getCompetitionById, updateGame } from "../../api/competition";
+import { ICompData, ICompetition, IGame, IRankingData } from "../../models/competitions";
+import { getCompetitionById, updateGame } from "../../api/competition";
 import "./Competition.css";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
-import { InputText } from "primereact/inputtext";
-import { Field, Form } from "react-final-form";
+import { Form } from "react-final-form";
 import { RadioButton } from "primereact/radiobutton";
 
 interface ILocationState {
