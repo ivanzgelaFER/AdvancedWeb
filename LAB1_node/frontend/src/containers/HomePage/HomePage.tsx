@@ -6,7 +6,6 @@ import { Dialog } from "primereact/dialog";
 import { ICompetition, competitionInit } from "../../models/competitions";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
-import "primereact/resources/primereact.min.css";
 import { InputNumber, InputNumberChangeEvent } from "primereact/inputnumber";
 import { createTournament } from "../../helpers/generateTurnament";
 import { FieldMetaState, Field, Form } from "react-final-form";
