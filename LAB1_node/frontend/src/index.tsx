@@ -10,7 +10,6 @@ import { Layout } from "./containers/Layout/Layout";
 import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import { CompetitionDetails } from "./containers/Competition/CompetitionDetails";
-import "@fortawesome/fontawesome-free/css/all.min.css";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 
 if (process.env.NODE_ENV === "production") {
