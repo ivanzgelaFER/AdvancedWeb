@@ -26,7 +26,10 @@ root.render(
         domain={domain}
         clientId={clientId}
         authorizationParams={{
-            redirect_uri: window.location.origin,
+            redirect_uri:
+                window.location.hostname === "localhost"
+                    ? window.location.origin
+                    : "https://web2-lab1-react.onrender.com/",
         }}
     >
         <BrowserRouter>
