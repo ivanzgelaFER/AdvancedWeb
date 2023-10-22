@@ -3,7 +3,7 @@ const db = require('../db')
 const getCompetitions = async (req, res) => {
     const sql = 'select * from competition';
     try {
-        const data = await db.query(sql, []);
+        //const data = await db.query(sql, []);
         //res.status(200).json(data.rows);
     } catch (err) {
         console.log(err);
