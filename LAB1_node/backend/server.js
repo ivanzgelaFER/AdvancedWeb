@@ -41,6 +41,7 @@ const checkJwt = auth({
 });
 app.use(checkJwt);
 */
+app.use('/', express.static(path.join(__dirname, 'public')))
 
 app.use('/', authRoutes);
 app.use('/competition', competitionRoutes);
