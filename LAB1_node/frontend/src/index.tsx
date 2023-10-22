@@ -4,8 +4,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { App } from "./App";
 import { PrivateRoute } from "./containers/Login/PrivateRoute";
 import reportWebVitals from "./reportWebVitals";
-import { Provider } from "react-redux";
-import { store } from "./store/configureStore";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { Competition } from "./containers/Competition/Competition";
 import { Layout } from "./containers/Layout/Layout";
@@ -25,28 +23,23 @@ const domain = process.env.REACT_APP_AUTH0_DOMAIN ?? "";
 const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID ?? "";
 
 root.render(
-    <Provider store={store}>
-        <Auth0Provider
-            domain={domain}
-            clientId={clientId}
-            authorizationParams={{
-                redirect_uri: window.location.origin,
-            }}
-        >
-            <BrowserRouter>
-                <Layout>
-                    <Routes>
-                        <Route path="/" element={<Competition />} />
-                        <Route path={"/competition-details"} element={<CompetitionDetails />} />
-                        <Route
-                            path="/*"
-                            element={<PrivateRoute path="/private" component={App} />}
-                        />
-                    </Routes>
-                </Layout>
-            </BrowserRouter>
-        </Auth0Provider>
-    </Provider>
+    <Auth0Provider
+        domain={domain}
+        clientId={clientId}
+        authorizationParams={{
+            redirect_uri: window.location.origin,
+        }}
+    >
+        <BrowserRouter>
+            <Layout>
+                <Routes>
+                    <Route path="/" element={<Competition />} />
+                    <Route path={"/competition-details"} element={<CompetitionDetails />} />
+                    <Route path="/*" element={<PrivateRoute path="/private" component={App} />} />
+                </Routes>
+            </Layout>
+        </BrowserRouter>
+    </Auth0Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

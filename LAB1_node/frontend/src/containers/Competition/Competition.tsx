@@ -4,13 +4,11 @@ import { CompetitionTable } from "./CompetitionTable";
 import { useState, useCallback, useEffect } from "react";
 import { getCompetitions } from "../../api/competition";
 import { ICompetition } from "../../models/competitions";
-import { useDispatch } from "react-redux";
 
 export const Competition = () => {
     const { isAuthenticated, isLoading } = useAuth0();
     const [competitions, setCompetitions] = useState<ICompetition[]>([]);
 
-    const dispatch = useDispatch();
     const fetchCompetitions = useCallback(async () => {
         try {
             const res = await getCompetitions();
@@ -18,7 +16,7 @@ export const Competition = () => {
         } catch (error) {
             console.log("Error while fetching competitions.");
         }
-    }, [dispatch]);
+    }, []);
 
     useEffect(() => {
         fetchCompetitions();

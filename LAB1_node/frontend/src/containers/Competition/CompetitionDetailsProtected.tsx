@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { ICompData, ICompetition, IGame, IRankingData } from "../../models/competitions";
 import { getCompetitionById, updateGame } from "../../api/competition";
 import "./Competition.css";
@@ -15,7 +14,6 @@ interface ILocationState {
 
 export const CompetitionDetailsProtected = () => {
     const location = useLocation();
-    const dispatch = useDispatch();
     const [competition, setCompetition] = useState((location.state as ILocationState)?.competition);
     const [competitionData, setCompetitionData] = useState<ICompData>({});
     const [rankingData, setRankingData] = useState<IRankingData[]>([]);
@@ -84,7 +82,7 @@ export const CompetitionDetailsProtected = () => {
         } catch (error) {
             console.log("Error while fetching competition.");
         }
-    }, [dispatch]);
+    }, []);
 
     useEffect(() => {
         fetchCompetition();

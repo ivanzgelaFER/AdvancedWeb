@@ -1,4 +1,4 @@
-import { compose, createStore} from "redux";
+/*import { compose, createStore} from "redux";
 import { UserData } from "../models/userData";
 
 export interface AppState {
@@ -22,3 +22,4 @@ const configureStore = (initialState?: AppState) => {
 export const store = configureStore();
 
 export type AppDispatch = typeof store.dispatch;
+*/
