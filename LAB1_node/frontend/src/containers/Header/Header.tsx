@@ -12,7 +12,16 @@ export const Header = () => {
                     <div className="menubar">
                         {isAuthenticated ? (
                             <div className="header-end-buttons">
-                                <Button label="Logout" onClick={() => logout()} />
+                                <Button
+                                    label="Logout"
+                                    onClick={() =>
+                                        logout({
+                                            logoutParams: {
+                                                returnTo: "https://web2-lab1-react.onrender.com/",
+                                            },
+                                        })
+                                    }
+                                />
                             </div>
                         ) : (
                             <div className="header-end-buttons">
