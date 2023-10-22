@@ -11,7 +11,7 @@ configureAxiosClient(axios);
 
 export const App = () => {
     const location = useLocation();
-    const { getIdTokenClaims, getAccessTokenSilently } = useAuth0();
+    const { getAccessTokenSilently } = useAuth0();
 
     const getAccesToken = useCallback(async () => {
         try {
