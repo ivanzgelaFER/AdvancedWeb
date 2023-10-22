@@ -1,4 +1,4 @@
-import { applyMiddleware, compose, createStore} from "redux";
+import { compose, createStore} from "redux";
 import { UserData } from "../models/userData";
 
 export interface AppState {
