@@ -44,7 +44,18 @@ app.use(checkJwt);
 app.use('/', authRoutes);
 app.use('/competition', competitionRoutes);
 
-const port = 8080;
+const externalUrl = process.env.RENDER_EXTERNAL_URL;
+const port = externalUrl && process.env.PORT ? parseInt(process.env.PORT) : 4080;
+
+if (externalUrl) {
+  const hostname = '0.0.0.0'; //ne 127.0.0.1
+  app.listen(port, hostname, () => {
+  console.log(`Server locally running at http://${hostname}:${port}/ and from
+  outside on ${externalUrl}`);
+})};
+
+/*
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
+*/
