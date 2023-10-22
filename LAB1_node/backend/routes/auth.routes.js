@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var axios = require('axios');
+const path = require('path')
 const authServer = 'https://dev-zxyjma4djioibxce.us.auth0.com';
 
 router.get('^/$|/index(.html)?', (req, res) => {
