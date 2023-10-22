@@ -33,11 +33,8 @@ root.render(
             <Layout>
                 <Routes>
                     <Route path="/" element={<Competition />} />
-                    {/*
-                    
                     <Route path={"/competition-details"} element={<CompetitionDetails />} />
                     <Route path="/*" element={<PrivateRoute path="/private" component={App} />} />
-                    */}
                 </Routes>
             </Layout>
         </BrowserRouter>
