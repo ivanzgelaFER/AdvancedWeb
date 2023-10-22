@@ -2,11 +2,11 @@ import "./HomePage.css";
 import { useCallback, useEffect, useState } from "react";
 import { addCompetition, getCompetitions } from "../../api/competition";
 import { CompetitionTable } from "../Competition/CompetitionTable";
-import { Dialog } from "primereact/dialog";
+//import { Dialog } from "primereact/dialog";
 import { ICompetition, competitionInit } from "../../models/competitions";
-import { InputText } from "primereact/inputtext";
-import { Button } from "primereact/button";
-import { InputNumber, InputNumberChangeEvent } from "primereact/inputnumber";
+//import { InputText } from "primereact/inputtext";
+//import { Button } from "primereact/button";
+//import { InputNumber, InputNumberChangeEvent } from "primereact/inputnumber";
 import { createTournament } from "../../helpers/generateTurnament";
 import { FieldMetaState, Field, Form } from "react-final-form";
 
@@ -72,12 +72,14 @@ export const HomePage = () => {
     return (
         <div>
             <div>
-                <Button label="Add New Competition" onClick={() => setDialogOpen(true)} />
+                <button title="Add New Competition" onClick={() => setDialogOpen(true)} />
             </div>
             <CompetitionTable
                 competitionsData={competitions}
                 fetchCompetition={fetchCompetitions}
             />
+            {/*
+            
             <Dialog
                 visible={dialogOpen}
                 id="new-competition"
@@ -290,6 +292,7 @@ export const HomePage = () => {
                     )}
                 />
             </Dialog>
+            */}
         </div>
     );
 };

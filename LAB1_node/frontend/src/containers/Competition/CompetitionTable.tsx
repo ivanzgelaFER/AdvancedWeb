@@ -1,9 +1,9 @@
 import "./Competition.css";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
+//import { DataTable } from "primereact/datatable";
+//import { Column } from "primereact/column";
 import { ICompetition } from "../../models/competitions";
 import { useNavigate } from "react-router-dom";
-import { Button } from "primereact/button";
+//import { Button } from "primereact/button";
 import { deleteCompetition } from "../../api/competition";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -32,10 +32,9 @@ export const CompetitionTable = ({ competitionsData, fetchCompetition }: Props) 
 
     const actionColumnDelete = (rowData: ICompetition) => {
         return (
-            <Button
+            <button
                 className="button-delete-competition"
                 //tooltip={"Obriši"} POKAZUJE SE ISPOD FOOTERA IZ NEKOG RAZLOGA
-                icon="fa fa-trash"
                 onClick={() => {
                     handleDeleteCompetiton(rowData);
                 }}
@@ -46,6 +45,8 @@ export const CompetitionTable = ({ competitionsData, fetchCompetition }: Props) 
     return (
         <div className="competitions-table">
             <h3>For more details about specific competition click on table row!</h3>
+            {/*
+            
             <DataTable
                 value={competitionsData}
                 showGridlines
@@ -85,6 +86,7 @@ export const CompetitionTable = ({ competitionsData, fetchCompetition }: Props) 
                     />
                 )}
             </DataTable>
+            */}
         </div>
     );
 };
