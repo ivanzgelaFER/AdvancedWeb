@@ -7,7 +7,7 @@ const pool = new Pool({
     host: process.env.DB_HOST,
     database: process.env.DB_DATABASE,
     password: process.env.DB_PASS,
-    port: 5432,
+    port:  process.env.DB_PORT,
     //ssl: true  //za produkciju ovo moras izmijeniti, treb ti https umjesto http na kojoj je sad
 });
 
