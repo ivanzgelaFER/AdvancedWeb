@@ -3,10 +3,10 @@ import { useLocation } from "react-router-dom";
 import { ICompData, ICompetition, IGame, IRankingData } from "../../models/competitions";
 import { getCompetitionById, updateGame } from "../../api/competition";
 import "./Competition.css";
-//import { Button } from "primereact/button";
-//import { Dialog } from "primereact/dialog";
-//import { RadioButton } from "primereact/radiobutton";
-//import { Form } from "react-final-form";
+import { Button } from "primereact/button";
+import { Dialog } from "primereact/dialog";
+import { RadioButton } from "primereact/radiobutton";
+import { Form } from "react-final-form";
 
 interface ILocationState {
     competition: ICompetition;
@@ -152,12 +152,12 @@ export const CompetitionDetailsProtected = () => {
                                                         : `${item.player2} win`)}
                                             </td>
                                             <td>
-                                                <button
+                                                <Button
                                                     onClick={() => {
                                                         setGame(item);
                                                         setDialogOpen(true);
                                                     }}
-                                                ></button>
+                                                ></Button>
                                             </td>
                                         </tr>
                                     ))}
@@ -166,8 +166,7 @@ export const CompetitionDetailsProtected = () => {
                     </div>
                 </div>
             </div>
-            {/*
-             
+
             <Dialog
                 visible={dialogOpen}
                 id="add-result"
@@ -244,7 +243,6 @@ export const CompetitionDetailsProtected = () => {
                     )}
                 />
             </Dialog>
-             */}
         </div>
     );
 };

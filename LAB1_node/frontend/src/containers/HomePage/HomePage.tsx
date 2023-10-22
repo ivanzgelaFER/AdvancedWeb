@@ -2,13 +2,13 @@ import "./HomePage.css";
 import { useCallback, useEffect, useState } from "react";
 import { addCompetition, getCompetitions } from "../../api/competition";
 import { CompetitionTable } from "../Competition/CompetitionTable";
-//import { Dialog } from "primereact/dialog";
+import { Dialog } from "primereact/dialog";
 import { ICompetition, competitionInit } from "../../models/competitions";
-//import { InputText } from "primereact/inputtext";
-//import { Button } from "primereact/button";
-//import { InputNumber, InputNumberChangeEvent } from "primereact/inputnumber";
+import { InputText } from "primereact/inputtext";
+import { Button } from "primereact/button";
+import { InputNumber, InputNumberChangeEvent } from "primereact/inputnumber";
 import { createTournament } from "../../helpers/generateTurnament";
-//import { FieldMetaState, Field, Form } from "react-final-form";
+import { FieldMetaState, Field, Form } from "react-final-form";
 
 export const HomePage = () => {
     const [dialogOpen, setDialogOpen] = useState(false);
@@ -61,25 +61,24 @@ export const HomePage = () => {
         } finally {
             setDialogOpen(false);
         }
-    }; /*
+    };
     const isFormFieldValid = (meta: FieldMetaState<any>) => {
         return meta.touched && meta.error;
     };
 
     const getFormErrorMessage = (meta: FieldMetaState<any>) => {
         return isFormFieldValid(meta) && <small className="p-error">{meta.error}</small>;
-    };*/
+    };
     return (
         <div>
             <div>
-                <button title="Add New Competition" onClick={() => setDialogOpen(true)} />
+                <Button title="Add New Competition" onClick={() => setDialogOpen(true)} />
             </div>
             <CompetitionTable
                 competitionsData={competitions}
                 fetchCompetition={fetchCompetitions}
             />
-            {/*
-            
+
             <Dialog
                 visible={dialogOpen}
                 id="new-competition"
@@ -292,7 +291,6 @@ export const HomePage = () => {
                     )}
                 />
             </Dialog>
-            */}
         </div>
     );
 };
