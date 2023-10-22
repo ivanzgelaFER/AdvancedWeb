@@ -7,6 +7,7 @@ import "./Competition.css";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import { RadioButton } from "primereact/radiobutton";
+import { Form } from "react-final-form";
 
 interface ILocationState {
     competition: ICompetition;
@@ -176,8 +177,6 @@ export const CompetitionDetailsProtected = () => {
                 draggable={false}
                 onHide={() => setDialogOpen(false)}
             >
-                {/*
-                
                 <Form
                     onSubmit={(data: IGame) => {
                         const gameWithResult: IGame = {
@@ -246,7 +245,6 @@ export const CompetitionDetailsProtected = () => {
                         </form>
                     )}
                 />
-                */}
             </Dialog>
         </div>
     );
