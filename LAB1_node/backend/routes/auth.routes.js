@@ -2,11 +2,11 @@ var express = require('express');
 var router = express.Router();
 var axios = require('axios');
 const path = require('path')
-const authServer = 'https://dev-zxyjma4djioibxce.us.auth0.com';
 
 router.get('^/$|/index(.html)?', (req, res) => {
   res.sendFile(path.join(__dirname, '..', 'views', 'index.html'))
 })
+const authServer = 'https://dev-zxyjma4djioibxce.us.auth0.com';
 /*
 router.get('/protected', async function(req, res) {
   const accesstoken = req.headers.authorization.split(' ')[1];

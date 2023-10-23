@@ -3,20 +3,17 @@ var dotenv = require('dotenv');
 dotenv.config()
 
 const pool = new Pool({
-    //onnectionString: "postgres://ivan:tYuaocd9TrE8K4M02FxXCkNkzF5ZVMSV@dpg-ckqn2aprfc9c739sft4g-a/web2_lab1_2gge",
-    //connectionString: "mysql://ujbtz42hnjir26oo:vAZXe6OGNwhW2MQcUe6h@blamxtxdr4jbeelputqc-mysql.services.clever-cloud.com:3306/blamxtxdr4jbeelputqc"
-    connectionString: "postgres://default:c2hpi4tbUwIT@ep-withered-math-75496893.eu-central-1.postgres.vercel-storage.com:5432/verceldb"
-    
+    connectionString: process.env.DB_CONNECTIONSTRING
     //user: process.env.DB_USER,
     //host: process.env.DB_HOST,
     //database: process.env.DB_DATABASE,
     //password: process.env.DB_PASS,
     //port:  process.env.DB_PORT,
     ,
-    ssl: true  //za produkciju ovo moras izmijeniti, treb ti https umjesto http na kojoj je sad
+    ssl: true
 });
 
-const sql_create_competition = `CREATE TABLE categories (
+const sql_create_competition = `CREATE TABLE competition (
     id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     name text,
     vrsta text,
@@ -25,7 +22,7 @@ const sql_create_competition = `CREATE TABLE categories (
     draw int
 )`;
 
-const sql_create_game = `CREATE TABLE categories (
+const sql_create_game = `CREATE TABLE game (
     id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     round int,
     player1 text,
@@ -34,6 +31,39 @@ const sql_create_game = `CREATE TABLE categories (
     result int
 )`;
 
+let table_names = [
+    "competition",
+    "game",
+]
+
+let tables = [
+    sql_create_game,
+    sql_create_competition,
+];
+
+(async () => {
+    //console.log("Creating and populating tables");
+    for (let i = 0; i < tables.length; i++) {
+        //console.log("Creating table " + table_names[i] + ".");
+        try {
+            await pool.query(tables[i], [])
+            //console.log("Table " + table_names[i] + " created.");
+            if (table_data[i] !== undefined) {
+                try {
+                    await pool.query(table_data[i], [])
+                    //console.log("Table " + table_names[i] + " populated with data.");
+                } catch (err) {
+                    //console.log("Error populating table " + table_names[i] + " with data.")
+                    return console.log(err.message);
+                }
+            }
+        } catch (err) {
+            console.log("Error creating table " + table_names[i])
+            return console.log(err.message);
+        }
+    }
+    await pool.end();
+})()
 
 module.exports = {
     query: (text, params) => {

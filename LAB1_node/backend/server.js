@@ -17,17 +17,6 @@ app.use(cors());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-/*
-app.use(session({
-  store: new pgSession({
-      pool: db.pool,
-  }),
-
-  secret: "web2_lab1",
-  resave: false,
-  saveUninitialized: true
-}))*/
-
 //ROUTES
 const authRoutes = require('./routes/auth.routes');
 const competitionRoutes = require('./routes/competition.routes');
@@ -70,9 +59,3 @@ if (externalUrl) {
     console.log(`Server locally running at http://${hostname}:${port}`);
   })
 }
-
-/*
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
-*/
