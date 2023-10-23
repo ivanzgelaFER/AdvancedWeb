@@ -54,6 +54,7 @@ export const CompetitionDetails = () => {
             let d: IRankingData = { player: key, points: value };
             convertedData.push(d);
         });
+        convertedData.sort((a, b) => b.points - a.points);
         return convertedData;
     };
 
