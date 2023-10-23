@@ -11,6 +11,7 @@ import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/lara-light-indigo/theme.css";
 import { CompetitionDetails } from "./containers/Competition/CompetitionDetails";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 if (process.env.NODE_ENV === "production") {
     disableReactDevTools();

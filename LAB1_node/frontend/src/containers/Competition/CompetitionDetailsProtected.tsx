@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ICompData, ICompetition, IGame, IRankingData } from "../../models/competitions";
 import { getCompetitionById, updateGame } from "../../api/competition";
 import "./Competition.css";
@@ -14,6 +14,7 @@ interface ILocationState {
 
 export const CompetitionDetailsProtected = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const [competition, setCompetition] = useState((location.state as ILocationState)?.competition);
     const [competitionData, setCompetitionData] = useState<ICompData>({});
     const [rankingData, setRankingData] = useState<IRankingData[]>([]);
@@ -70,6 +71,7 @@ export const CompetitionDetailsProtected = () => {
             let d: IRankingData = { player: key, points: value };
             convertedData.push(d);
         });
+        convertedData.sort((a, b) => b.points - a.points);
         return convertedData;
     };
 
@@ -88,8 +90,25 @@ export const CompetitionDetailsProtected = () => {
         fetchCompetition();
     }, [fetchCompetition]);
 
+    const getResultText = (result: number, player1: string, player2: string) => {
+        if (result === 0) {
+            return "Draw";
+        } else if (result === 1) {
+            return `${player1} win`;
+        } else if (result === 2) {
+            return `${player2} win`;
+        }
+    };
+
     return (
         <div>
+            <div>
+                <Button
+                    label="Back"
+                    icon="fa fa-arrow-left"
+                    onClick={() => navigate("/competitions")}
+                />
+            </div>
             <div>
                 <h1>Competition: {competitionData.competition?.name}</h1>{" "}
                 <h2>Competition type: {competitionData.competition?.vrsta}</h2>
@@ -132,7 +151,7 @@ export const CompetitionDetailsProtected = () => {
                                     <th>Player 1</th>
                                     <th>Player 2</th>
                                     <th>Result</th>
-                                    <th>Add result</th>
+                                    <th>Add/Edit result</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -144,15 +163,15 @@ export const CompetitionDetailsProtected = () => {
                                             <td>{item.player1}</td>
                                             <td>{item.player2}</td>
                                             <td>
-                                                {item.result &&
-                                                    (item.result === 0
-                                                        ? "Draw"
-                                                        : item.result === 1
-                                                        ? `${item.player1} win`
-                                                        : `${item.player2} win`)}
+                                                {getResultText(
+                                                    item.result,
+                                                    item.player1,
+                                                    item.player2
+                                                )}
                                             </td>
                                             <td>
                                                 <Button
+                                                    label="Add"
                                                     onClick={() => {
                                                         setGame(item);
                                                         setDialogOpen(true);
@@ -234,10 +253,11 @@ export const CompetitionDetailsProtected = () => {
                                 <Button
                                     label="Cancel"
                                     onClick={() => setDialogOpen(false)}
-                                    icon="pi pi-times"
+                                    icon="fa fa-times"
                                     type="button"
+                                    className=""
                                 />
-                                <Button label="Submit" icon="pi pi-check" type="submit" />
+                                <Button label="Submit" icon="fa fa-check" type="submit" />
                             </div>
                         </form>
                     )}

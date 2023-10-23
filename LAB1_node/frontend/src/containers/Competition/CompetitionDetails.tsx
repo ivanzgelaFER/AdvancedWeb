@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ICompData, ICompetition, IGame, IRankingData } from "../../models/competitions";
 import { getCompetitionById } from "../../api/competition";
 import "./Competition.css";
+import { Button } from "primereact/button";
 
 interface ILocationState {
     competition: ICompetition;
@@ -10,6 +11,7 @@ interface ILocationState {
 
 export const CompetitionDetails = () => {
     const location = useLocation();
+    const navigate = useNavigate();
     const [competition, setCompetition] = useState((location.state as ILocationState)?.competition);
     const [competitionData, setCompetitionData] = useState<ICompData>({});
     const [rankingData, setRankingData] = useState<IRankingData[]>([]);
@@ -70,9 +72,25 @@ export const CompetitionDetails = () => {
         fetchCompetition();
     }, [fetchCompetition]);
 
-    console.log(competitionData);
+    const getResultText = (result: number, player1: string, player2: string) => {
+        if (result === 0) {
+            return "Draw";
+        } else if (result === 1) {
+            return `${player1} win`;
+        } else if (result === 2) {
+            return `${player2} win`;
+        }
+    };
+
     return (
         <div>
+            <div>
+                <Button
+                    label="Back"
+                    icon="fa fa-arrow-left"
+                    onClick={() => navigate("/competitions")}
+                />
+            </div>
             <div>
                 <h1>Competition: {competitionData.competition?.name}</h1>{" "}
                 <h2>Competition type: {competitionData.competition?.vrsta}</h2>
@@ -126,12 +144,11 @@ export const CompetitionDetails = () => {
                                             <td>{item.player1}</td>
                                             <td>{item.player2}</td>
                                             <td>
-                                                {item.result &&
-                                                    (item.result === 0
-                                                        ? "Draw"
-                                                        : item.result === 1
-                                                        ? `${item.player1} win`
-                                                        : `${item.player2} win`)}
+                                                {getResultText(
+                                                    item.result,
+                                                    item.player1,
+                                                    item.player2
+                                                )}
                                             </td>
                                         </tr>
                                     ))}

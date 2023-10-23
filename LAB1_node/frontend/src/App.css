@@ -20,6 +20,7 @@ body {
 .submit-buttons-in-modal > button:first-child {
     background-color: var(--surface-700) !important;
     border: 1px solid var(--surface-700) !important;
+    margin-right: 10px !important;
 }
 
 .form-container {

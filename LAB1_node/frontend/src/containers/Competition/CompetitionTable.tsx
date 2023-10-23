@@ -34,6 +34,7 @@ export const CompetitionTable = ({ competitionsData, fetchCompetition }: Props) 
         return (
             <Button
                 className="button-delete-competition"
+                icon="fa fa-trash"
                 //tooltip={"Obriši"} POKAZUJE SE ISPOD FOOTERA IZ NEKOG RAZLOGA
                 onClick={() => {
                     handleDeleteCompetiton(rowData);
