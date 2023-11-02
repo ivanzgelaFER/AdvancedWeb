@@ -80,7 +80,10 @@ export const SQL_Injection = () => {
                         User/users data {value == "On" && <span>+ SQL injection is active</span>}
                     </h2>
                 </div>
-                <h3 className="h3-allert">Password and other sensitive date should not !</h3>
+                <h5 className="h3-allert">
+                    For the purpose of this exercise, sensitive data is being shown, otherwise, it
+                    should not be displayed like this!
+                </h5>
                 <div className="table-container">
                     <table>
                         <thead>

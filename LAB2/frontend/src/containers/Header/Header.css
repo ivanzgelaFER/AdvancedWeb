@@ -4,6 +4,7 @@ header {
     z-index: 2000;
     height: 60px;
     background-color: var(--header-background);
+    color: white;
     align-items: center;
 }
 
@@ -11,11 +12,15 @@ header .menubar {
     width: 100%;
     padding: 0px 30px;
     display: flex;
-    justify-content: end;
+    justify-content: center;
     box-sizing: border-box;
     align-items: center;
-    color: black;
+    color: rgb(224, 110, 110) !important;
     height: 100%;
+}
+.menubar > a {
+    color: rgb(224, 110, 110) !important;
+    text-decoration: none !important;
 }
 
 .header-end-buttons {
