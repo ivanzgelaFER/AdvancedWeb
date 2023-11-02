@@ -3,23 +3,30 @@ var dotenv = require('dotenv');
 dotenv.config()
 
 const pool = new Pool({
-    connectionString: process.env.DB_CONNECTIONSTRING
-    //user: process.env.DB_USER,
-    //host: process.env.DB_HOST,
-    //database: process.env.DB_DATABASE,
-    //password: process.env.DB_PASS,
-    //port:  process.env.DB_PORT,
-    ,
-    ssl: true
+    //connectionString: process.env.DB_CONNECTIONSTRING
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    database: process.env.DB_DATABASE,
+    password: process.env.DB_PASS,
+    port: process.env.DB_PORT,
 });
 
 const sql_create_accounts = `CREATE TABLE accounts (
     id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     firstname text,
     lastname text,
+    username text,
     gmail text,
     password text
 )`;
+
+const sql_insert_accounts = `INSERT INTO accounts (firstname, lastname, username, gmail, password) 
+    VALUES ('Branko', 'Crnkovic', 'crni', 'crnkovic@gmail.com', 'branko123'),
+           ('Matej', 'Plesa', 'plesa', 'plesa@gmail.com', 'matej123'),
+           ('Kruno', 'Pavic', 'kruno', 'pavic@gmail.com', 'kruno123'),
+           ('Borko', 'Varacic', 'borko', 'varacic@gmail.com', 'borko123'),
+           ('Slavko', 'Pernar', 'slavko', 'pernar@gmail.com', 'slavko123')`;
+
 /*
 const sql_create_game = `CREATE TABLE game (
     id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -36,8 +43,17 @@ let table_names = [
 ]
 
 let tables = [
-    sql_create_accounts,
+    sql_create_accounts
 ];
+
+let table_data = [
+    sql_insert_accounts
+]
+
+if ((tables.length !== table_data.length) || (tables.length !== table_names.length)) {
+    console.log("tables, names and data arrays length mismatch.")
+    return
+}
 
 (async () => {
     //console.log("Creating and populating tables");

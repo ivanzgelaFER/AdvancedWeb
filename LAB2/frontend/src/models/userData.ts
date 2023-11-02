@@ -1,7 +1,7 @@
 export interface UserData {
-    guid?: string;
-    firstName?: string;
-    lastName?: string;
-    userName?: string;
-    token?: string;
+    firstname?: string;
+    lastname?: string;
+    username?: string;
+    gmail?: string;
+    password?: string;
 }

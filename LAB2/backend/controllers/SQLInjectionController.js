@@ -1,11 +1,12 @@
 const db = require('../db')
 
-const getAccountById = async (req, res) => {
-    const id = req.params.id;
-    const sql1 = `select * from accounts where id = ${id}`;
+const getAccountByUsername = async (req, res) => {
+    const username = req.params.username;
+    const sql1 = "select * from accounts where username = '" + username + "'";
+    const data = {};
     try {
         const account = await db.query(sql1, []);
-        data.accounts = comp.rows;
+        data.accounts = account.rows;
         res.status(200).json(data);
     } catch (err) {
         console.log(err);
@@ -15,5 +16,5 @@ const getAccountById = async (req, res) => {
  
 
 module.exports = {
-    getAccountById,
+    getAccountByUsername,
 }

@@ -12,8 +12,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 //ROUTES
-const sql_injection = require('./sql_injection.routes');
-const broken_authentification = require('./broken_authentification.routes');
+const sql_injection = require('./routes/sql_injection.routes');
+const broken_authentification = require('./routes/broken_authentification.routes');
 
 app.use('/', express.static(path.join(__dirname, 'public')))
 
