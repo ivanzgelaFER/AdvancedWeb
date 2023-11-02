@@ -1,5 +1,31 @@
+import { useNavigate } from "react-router-dom";
 import "./HomePage.css";
+import { Button } from "primereact/button";
 
 export const HomePage = () => {
-    return <div>HOME PAGE</div>;
+    const navigate = useNavigate();
+
+    return (
+        <div>
+            <h1>Chose and try vulnerabilities</h1>
+            <div>
+                <h1>SQL injection</h1>
+                <div>
+                    <Button
+                        label="Try SQL injection"
+                        onClick={() => navigate("/sql_injection")}
+                    ></Button>
+                </div>
+            </div>
+            <div>
+                <h1>Loša autentifikacija</h1>
+                <div>
+                    <Button
+                        label="Try broken authentification"
+                        onClick={() => navigate("/broken_authentification")}
+                    ></Button>
+                </div>
+            </div>
+        </div>
+    );
 };
