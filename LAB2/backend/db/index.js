@@ -17,7 +17,8 @@ const sql_create_accounts = `CREATE TABLE accounts (
     lastname text,
     username text,
     gmail text,
-    password text
+    password text,
+    attempts int DEFAULT 0
 )`;
 
 const sql_insert_accounts = `INSERT INTO accounts (firstname, lastname, username, gmail, password) 
@@ -26,17 +27,6 @@ const sql_insert_accounts = `INSERT INTO accounts (firstname, lastname, username
            ('Kruno', 'Pavic', 'kruno', 'pavic@gmail.com', 'kruno123'),
            ('Borko', 'Varacic', 'borko', 'varacic@gmail.com', 'borko123'),
            ('Slavko', 'Pernar', 'slavko', 'pernar@gmail.com', 'slavko123')`;
-
-/*
-const sql_create_game = `CREATE TABLE game (
-    id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    round int,
-    player1 text,
-    player2 text, 
-    competition text, 
-    result int
-)`;
-*/ 
 
 let table_names = [
     "accounts"

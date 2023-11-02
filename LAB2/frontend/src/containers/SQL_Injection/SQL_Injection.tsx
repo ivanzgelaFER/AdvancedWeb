@@ -44,7 +44,7 @@ export const SQL_Injection = () => {
                 }
             }
         } catch (error) {
-            console.log("An error has occurred while adding a new satellite.");
+            console.log("An error has occurred while fetching user data.");
         }
     };
 
@@ -80,7 +80,7 @@ export const SQL_Injection = () => {
                         User/users data {value == "On" && <span>+ SQL injection is active</span>}
                     </h2>
                 </div>
-                <h5 className="h3-allert">
+                <h5 className="h5-allert">
                     For the purpose of this exercise, sensitive data is being shown, otherwise, it
                     should not be displayed like this!
                 </h5>

@@ -1,0 +1,39 @@
+.broken-authentification-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.login-form-broken-auth {
+    padding-left: 5px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 50%;
+}
+.login-form > h4 {
+    padding-left: 5px;
+}
+
+.login-form > input {
+    margin: 5px;
+}
+
+.login-form > div > input {
+    margin: 5px;
+    width: 100%;
+}
+
+.login-form > button {
+    align-self: center;
+    width: 96%;
+}
+
+.h5-allert {
+    color: rgb(250, 121, 121);
+}
+
+.table-container {
+    max-width: 75%;
+}
