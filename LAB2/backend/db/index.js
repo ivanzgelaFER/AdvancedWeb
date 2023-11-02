@@ -9,6 +9,7 @@ const pool = new Pool({
     //database: process.env.DB_DATABASE,
     //password: process.env.DB_PASS,
     //port: process.env.DB_PORT,
+    , ssl: true
 });
 
 const sql_create_accounts = `CREATE TABLE accounts (
