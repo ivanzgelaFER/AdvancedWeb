@@ -7,7 +7,7 @@ export const HomePage = () => {
 
     return (
         <div>
-            <h1>Chose and try vulnerabilities</h1>
+            <h1>Choose and try vulnerabilities</h1>
             <div>
                 <h1>SQL injection</h1>
                 <div>
@@ -18,7 +18,7 @@ export const HomePage = () => {
                 </div>
             </div>
             <div>
-                <h1>Loša autentifikacija</h1>
+                <h1>Broken authentification</h1>
                 <div>
                     <Button
                         label="Try broken authentification"
