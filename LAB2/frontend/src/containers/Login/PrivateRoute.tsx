@@ -1,4 +1,3 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import { Navigate, RouteProps } from "react-router-dom";
 
 type PrivateRouteProps = RouteProps & {
@@ -6,9 +5,9 @@ type PrivateRouteProps = RouteProps & {
 };
 
 export const PrivateRoute = ({ component: Component, ...rest }: PrivateRouteProps) => {
-    const { isAuthenticated } = useAuth0();
+    const allow = true;
 
-    if (isAuthenticated) {
+    if (allow) {
         return <Component />;
     } else {
         return <Navigate to="/" />;
