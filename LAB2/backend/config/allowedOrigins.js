@@ -1,5 +1,5 @@
 const allowedOrigins = [
-    'https://web2-lab1-react.onrender.com/',
+    'https://web2-lab2-hric.onrender.com/',
     'http://localhost:3000',
 
 ]
