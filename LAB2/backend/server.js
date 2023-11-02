@@ -1,14 +1,8 @@
 var express = require('express');
 var cors = require('cors');
 const path = require('path')
-const { auth } = require('express-oauth2-jwt-bearer');
-//const pg = require('pg');
-//const db = require('./db');
-const session = require('express-session');
-//const pgSession = require('connect-pg-simple')(session);
 const bodyParser = require('body-parser')
 var dotenv = require('dotenv');
-const corsOptions = require('./config/corsOptions')
 dotenv.config()
 
 const app = express();
@@ -18,22 +12,13 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 //ROUTES
-const authRoutes = require('./routes/auth.routes');
-const competitionRoutes = require('./routes/competition.routes');
+const sql_injection = require('./sql_injection.routes');
+const broken_authentification = require('./broken_authentification.routes');
 
-/*
-const authServer = 'https://dev-zxyjma4djioibxce.us.auth0.com';
-const checkJwt = auth({
-  audience: 'lab1_api2',
-  issuerBaseURL: `${authServer}`,
-  tokenSigningAlg: "RS256"
-});
-app.use(checkJwt);
-*/
 app.use('/', express.static(path.join(__dirname, 'public')))
 
-app.use('/', authRoutes);
-app.use('/competition', competitionRoutes);
+app.use('/injection', sql_injection);
+app.use('/auth', broken_authentification);
 
 app.all('*', (req, res) => {
   res.status(404)

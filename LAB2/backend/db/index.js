@@ -13,15 +13,14 @@ const pool = new Pool({
     ssl: true
 });
 
-const sql_create_competition = `CREATE TABLE competition (
+const sql_create_accounts = `CREATE TABLE accounts (
     id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    name text,
-    vrsta text,
-    win int, 
-    lose int, 
-    draw int
+    firstname text,
+    lastname text,
+    gmail text,
+    password text
 )`;
-
+/*
 const sql_create_game = `CREATE TABLE game (
     id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     round int,
@@ -30,15 +29,14 @@ const sql_create_game = `CREATE TABLE game (
     competition text, 
     result int
 )`;
+*/ 
 
 let table_names = [
-    "competition",
-    "game",
+    "accounts"
 ]
 
 let tables = [
-    sql_create_game,
-    sql_create_competition,
+    sql_create_accounts,
 ];
 
 (async () => {
