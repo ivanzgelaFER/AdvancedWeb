@@ -46,7 +46,10 @@ export const Broken_authentification = () => {
                         options={options}
                     />
                 </div>
-                <h3>Implemented: brute force attack and wrong error message</h3>
+                <h3>
+                    Implemented: enabled brute force attack, wrong error message and 'weak'
+                    passwords
+                </h3>
                 {user !== undefined && (
                     <div className="table-container">
                         <hr />

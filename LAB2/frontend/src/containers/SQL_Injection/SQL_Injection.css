@@ -33,3 +33,7 @@ tr:hover {
 .h5-allert {
     color: rgb(250, 121, 121);
 }
+
+.sql-injection-try {
+    max-width: 89%;
+}

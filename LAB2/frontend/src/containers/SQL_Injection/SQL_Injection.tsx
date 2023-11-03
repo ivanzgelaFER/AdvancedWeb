@@ -13,6 +13,7 @@ export const SQL_Injection = () => {
     const [value, setValue] = useState(options[0]);
     const [user, setUser] = useState<UserData[]>();
     const [username, setUsername] = useState("");
+    const [unionQuery, setUnionQuery] = useState("");
 
     const validateQuery = (input: string) => {
         const tautologyRegex = /('|\")(\s*)(o|O)(r|R)(\s*)1=1(\s*)(;|--)/;
@@ -32,14 +33,39 @@ export const SQL_Injection = () => {
         return isUsernameValid;
     };
 
+    const validateUnionQuery = (input: string) => {
+        const unionRegex = /(UNION\s+SELECT|null|version|user)/i;
+        const isUnionQueryValid = !unionRegex.test(input);
+        if (!isUnionQueryValid) {
+            alert("Potential SQL injection UNION query detected!");
+        }
+        return isUnionQueryValid;
+    };
+
     const handleGetAccount = async () => {
         try {
             if (value == "On") {
-                const data = await getAccountByUsername(username);
+                const data = await getAccountByUsername(username, "tautology");
                 setUser(data);
             } else if (value == "Off") {
                 if (validateQuery(username) && validateUsername(username)) {
-                    const data = await getAccountByUsername(username);
+                    const data = await getAccountByUsername(username, "tautology");
+                    setUser(data);
+                }
+            }
+        } catch (error) {
+            console.log("An error has occurred while fetching user data.");
+        }
+    };
+
+    const handleGetDatabaseData = async () => {
+        try {
+            if (value == "On") {
+                const data = await getAccountByUsername(unionQuery, "union");
+                setUser(data);
+            } else if (value == "Off") {
+                if (validateUnionQuery(unionQuery)) {
+                    const data = await getAccountByUsername(unionQuery, "union");
                     setUser(data);
                 }
             }
@@ -59,19 +85,34 @@ export const SQL_Injection = () => {
                     <h2>Enable/disable sql injection</h2>
                     <SelectButton
                         value={value}
-                        onChange={e => setValue(e.value)}
+                        onChange={e => {
+                            setValue(e.value);
+                            if (e.value === "Off") {
+                                setUser(undefined);
+                                setUsername("");
+                                setUnionQuery("");
+                            }
+                        }}
                         options={options}
                     />
                 </div>
-                <div>
-                    <h3>Enter username to get user datas</h3>
+                <div className="sql-injection-try">
+                    <h3>Enter username to get user data</h3>
                     <h5>Usernames in database: crni, plesa, kruno, borko, slavko</h5>
                     <h5>
                         Enter in textbox <span>' OR 1=1;--’</span> to exploit vulnerability(sql
                         injection tautology)
                     </h5>
                     <InputText value={username} onChange={e => setUsername(e.target.value)} />
-                    <Button label="Get account datas" onClick={handleGetAccount} />
+                    <Button label="Get account data" onClick={handleGetAccount} />
+
+                    <hr />
+
+                    <h3>Enter following commands to get database data with union sql injection</h3>
+                    <h5>UNION select null, version(), null, null, null, null, null</h5>
+                    <h5>UNION select null, user, null, null, null, null, null</h5>
+                    <InputText value={unionQuery} onChange={e => setUnionQuery(e.target.value)} />
+                    <Button label="Get database data" onClick={handleGetDatabaseData} />
                 </div>
             </div>
             <div>
