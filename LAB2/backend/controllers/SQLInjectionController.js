@@ -11,15 +11,9 @@ const getAccountByUsername = async (req, res) => {
     }
     const data = {};
     try {
-        if(attack == "tautology") {
-            const account = await db.query(sql1, []);
-            data.accounts = account.rows;
-            res.status(200).json(data);
-        } else if(attack == "union") {
-            const account = await db.query(sql1, []);
-            data.accounts = account.rows;
-            res.status(200).json(data);
-        }    
+        const account = await db.query(sql1, []);
+        data.accounts = account.rows;
+        res.status(200).json(data);
     } catch (err) {
         console.log(err);
         throw err
