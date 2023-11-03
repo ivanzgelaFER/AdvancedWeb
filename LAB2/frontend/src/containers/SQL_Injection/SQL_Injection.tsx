@@ -71,7 +71,7 @@ export const SQL_Injection = () => {
                         injection tautology)
                     </h5>
                     <InputText value={username} onChange={e => setUsername(e.target.value)} />
-                    <Button label="Get account" onClick={handleGetAccount} />
+                    <Button label="Get account datas" onClick={handleGetAccount} />
                 </div>
             </div>
             <div>
