@@ -18,20 +18,3 @@ header .menubar {
     color: rgb(224, 110, 110) !important;
     height: 100%;
 }
-.menubar > a {
-    color: rgb(224, 110, 110) !important;
-    text-decoration: none !important;
-}
-
-.header-end-buttons {
-    display: flex;
-    flex-direction: row;
-    justify-self: end;
-}
-
-.header-end-buttons > button {
-    height: 35px;
-    margin-right: 10px;
-    min-width: 100px;
-    font-size: 15px !important;
-}

@@ -1,3 +1,15 @@
-.sql-injection-button {
-    width: 18%;
+.home-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#home-page-container-canvas {
+    margin-top: 4%;
+}
+
+#canvas-container {
+    border: 2px solid #e47171;
+    background-color: rgb(255, 255, 255);
 }

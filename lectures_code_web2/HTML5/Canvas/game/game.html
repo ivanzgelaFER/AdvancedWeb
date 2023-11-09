@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Canvas onClick</title>
+    </head>
+<body>
+    <canvas id="myCanvas" width="350" height="300" style="border:1px solid #000000;"></canvas>
+    <h1>Obrada Canvas onClick događaja</h1>
+    <div>
+        <dialog id="Dialogbox" style="width:50%;background-color:#CCC; border:1px solid black;">
+            <p>Primjer poruke</p>
+            <button id="btnHide">Close</button>
+        </dialog>
+    </div>
+
+    <script type="text/JavaScript">
+        (function() {
+            var dialog = document.getElementById('Dialogbox');
+            document.getElementById('myCanvas').onclick = function() {
+                dialog.show();
+            };
+            document.getElementById('btnHide').onclick = function() {
+                dialog.close();
+            };
+        })();
+    </script>
+</body>
+</html>

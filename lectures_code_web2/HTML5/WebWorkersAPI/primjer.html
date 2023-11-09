@@ -1,0 +1,46 @@
+<!-- When executing scripts in an HTML page, the page becomes unresponsive until the script is finished. -->
+
+<!-- A web worker is a JavaScript that runs in the background, independently of other scripts, without affecting -->
+<!-- the performance of the page. You can continue to do whatever you want: clicking, selecting things, etc., -->
+<!-- while the web worker runs in the background. -->
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Izvor: <a href="https://www.w3schools.com/html/tryit.asp?filename=tryhtml5_webworker">https://www.w3schools.com/html/tryit.asp?filename=tryhtml5_webworker</a></p>
+
+<p>Brojač (svakih 500 ms): <output id="result"></output></p>
+<button onclick="startWorker()">Pokreni Web Workera</button> 
+<button onclick="stopWorker()">Zaustavi Web Workera</button>
+<br /><br />
+
+
+<script>
+var w;
+
+function startWorker()
+{
+if(typeof(Worker)!=="undefined")            //check whether the user's browser supports it
+  {
+    w=new Worker("https://www.w3schools.com/html/demo_workers.js");          //creates a new web worker object and runs the code in "demo_workers.js"
+
+    //Add an "onmessage" event listener to the web worker
+    //When the web worker posts a message, the code within the event listener is executed. The data from the web worker
+    //is stored in event.data.
+    w.onmessage = function (event) { document.getElementById("result").innerHTML=event.data; };
+  }
+else
+  {
+    document.getElementById("result").innerHTML="Sorry, your browser does not support Web Workers...";
+  }
+}
+
+function stopWorker()
+{ 
+    w.terminate();         //terminate a web worker, and free browser/computer resources
+}
+</script>
+
+</body>
+</html>

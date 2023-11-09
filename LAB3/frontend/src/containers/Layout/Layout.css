@@ -2,8 +2,7 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    color: var(--text-color);
-    background-color: var(--background-color);
+    background-color: rgb(131, 193, 255);
 }
 
 #layout #layout-columns {
@@ -18,7 +17,7 @@
 #layout main,
 #layout #left-sidebar {
     /* height of main section is 100% - header height - footer height. */
-    min-height: calc(100vh - 100px);
+    height: calc(100vh - 60px);
 }
 
 #layout main {
@@ -27,13 +26,4 @@
     align-items: center;
     overflow-y: auto;
     width: 100%;
-    padding: 0 50px;
-}
-
-#layout main > div {
-    width: 100%;
-}
-
-#layout main > div > div {
-    padding: 1rem 0;
 }

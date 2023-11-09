@@ -5,9 +5,7 @@ export const Header = () => {
     return (
         <header>
             <div className="menubar">
-                <Link to={"/"}>
-                    <h1>WEB 2 vulnerabilies</h1>
-                </Link>
+                <h1>WEB 2 archade game</h1>
             </div>
         </header>
     );
