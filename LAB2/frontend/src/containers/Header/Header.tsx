@@ -6,7 +6,7 @@ export const Header = () => {
         <header>
             <div className="menubar">
                 <Link to={"/"}>
-                    <h1>WEB 2 ARCHADE GAME</h1>
+                    <h1>WEB 2 vulnerabilies</h1>
                 </Link>
             </div>
         </header>
