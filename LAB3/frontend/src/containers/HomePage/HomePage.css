@@ -10,10 +10,14 @@
 }
 
 #canvas-container {
-    border: 2px solid black;
+    border: 3px solid black;
     background-color: rgb(255, 255, 255);
 }
 
 .p-dialog .p-dialog-header .p-dialog-title {
     padding-right: 10px;
+}
+
+.p-dialog .p-dialog-header-icons {
+    display: none;
 }

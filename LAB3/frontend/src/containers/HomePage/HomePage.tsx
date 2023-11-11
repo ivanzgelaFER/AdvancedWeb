@@ -108,7 +108,10 @@ export const HomePage = () => {
 
     return (
         <div className="home-page-container">
-            <h1>{formattedTime(time.getTime())}</h1>
+            <h1>
+                Best time: {formattedTime(bestResult)} Current time:
+                {formattedTime(time.getTime())}
+            </h1>
             <div id="home-page-container-canvas" />
             <Dialog
                 visible={visibleNewGame}

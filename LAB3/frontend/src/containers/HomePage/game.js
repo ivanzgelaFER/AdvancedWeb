@@ -1,9 +1,9 @@
 var player;
 var setCollisionRef;
-var satellites = [];
+var asteroids = [];
 
 export function startGame(game_player, setCollision) {
-    satellites = [];
+    asteroids = [];
     player = game_player
     player.x = (myGameArea.canvas.width) / 2;
     player.y = (myGameArea.canvas.height) / 2;
@@ -45,10 +45,25 @@ export function Player(width, height, color, type) {
 
     this.update = function () {
         let ctx = myGameArea.context;
+        //ovime stvaram sjenu oko igraca
         ctx.save();
         ctx.translate(this.x, this.y);
+        ctx.fillStyle = "rgba(255, 0, 0, 0.4)";
+        ctx.fillRect((this.width / -2) - 1, (this.height / -2) - 1, this.width + 2, this.height + 2);
+        ctx.restore();
+
+        //ovime stvaram igraca
+        ctx.save();
+        ctx.translate(this.x, this.y);
+
+        //ovime stvaram okvir igraca
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.8)";
+        ctx.lineWidth = 1;
+        ctx.strokeRect(this.width / -2, this.height / -2, this.width, this.height);
+
+        //ovime stvaram tijelo igraca
         ctx.fillStyle = color;
-        ctx.fillRect(0, 0, this.width, this.height);
+        ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);
         ctx.restore();
     };
 
@@ -62,7 +77,7 @@ export function Player(width, height, color, type) {
     };
 }
 
-export function Sattelite(width, height, color, x, y, speed_x, speed_y, type) {
+export function Asteroid(width, height, color, x, y, speed_x, speed_y, type) {
     this.type = type;
     this.width = width;
     this.height = height;
@@ -75,6 +90,21 @@ export function Sattelite(width, height, color, x, y, speed_x, speed_y, type) {
         let ctx = myGameArea.context;
         ctx.save();
         ctx.translate(this.x, this.y);
+        //ovime stvaram sjenu oko asteroida
+        ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
+        ctx.fillRect((this.width / -2) - 1, (this.height / -2) - 1, this.width + 2, this.height + 2);
+        ctx.restore();
+
+        //ovime stvaram asteroid
+        ctx.save();
+        ctx.translate(this.x, this.y);
+
+        //ovime stvaram okvir asteroida
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.8)";
+        ctx.lineWidth = 1;
+        ctx.strokeRect(this.width / -2, this.height / -2, this.width, this.height);
+
+        //ovime stvaram tijelo asteroida
         ctx.fillStyle = color;
         ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);
         ctx.restore();
@@ -84,36 +114,39 @@ export function Sattelite(width, height, color, x, y, speed_x, speed_y, type) {
 function updateGameArea() {
     myGameArea.clear();
     myGameArea.incrementFrame();
-
-    //svakih 10 frameova se stvara novi satelit, ovime kontroliram brzinu stvaranja satelita
+    
+    //predefinirano ucestalost pojavljivanje asteroida
+    //svakih 10 frameova se stvara novi asteroid, ovime kontroliram brzinu stvaranja asteroida
     if (myGameArea.frameNo % 10 === 0) { 
         var x = Math.random() > 0.5 ? -20 : myGameArea.canvas.width + 20;
         var y = Math.random() * myGameArea.canvas.height;
-        // Random speed 
+        // slucajne brzine asteroida 
         var speedX = (Math.random() - 0.5) * 1.5; 
         var speedY = (Math.random() - 0.5) * 1.5;
-
-        satellites.push(new Sattelite(10, 10, "blue", x, y, speedX, speedY));
+        // slucajna boja asteroida - nijanse sive boje
+        const grayValue = Math.floor(Math.random() * 101) + 50;
+        const grayColor = `rgb(${grayValue}, ${grayValue}, ${grayValue})`;
+        asteroids.push(new Asteroid(10, 10, grayColor, x, y, speedX, speedY));
     }
 
-    // ovime provjeravam da li je igrac udario u satelit
-    for (let i = 0; i < satellites.length; i++) {
+    // ovime provjeravam da li je igrac udario u asteroid
+    for (let i = 0; i < asteroids.length; i++) {
         if (
-            player.x < satellites[i].x + satellites[i].width &&
-            player.x + player.width > satellites[i].x &&
-            player.y < satellites[i].y + satellites[i].height &&
-            player.y + player.height > satellites[i].y
+            player.x < asteroids[i].x + asteroids[i].width &&
+            player.x + player.width > asteroids[i].x &&
+            player.y < asteroids[i].y + asteroids[i].height &&
+            player.y + player.height > asteroids[i].y
         ) {
             setCollisionRef(true);
             myGameArea.stop();
         }
     }
 
-    // osvjezavam pozicije satelita
-    for (let i = 0; i < satellites.length; i++) {
-        satellites[i].x += satellites[i].speed_x;
-        satellites[i].y += satellites[i].speed_y;
-        satellites[i].update();
+    // osvjezavam pozicije asteroida
+    for (let i = 0; i < asteroids.length; i++) {
+        asteroids[i].x += asteroids[i].speed_x;
+        asteroids[i].y += asteroids[i].speed_y;
+        asteroids[i].update();
     }
 
     player.newPos();
