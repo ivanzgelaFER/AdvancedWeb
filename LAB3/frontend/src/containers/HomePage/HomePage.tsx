@@ -1,24 +1,78 @@
 import "./HomePage.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
 import { Player, startGame } from "./game";
+import { format, set } from "date-fns";
 
 export const HomePage = () => {
-    const canvasRef = useRef<HTMLCanvasElement>(null);
-    const [visible, setVisible] = useState(true);
-    const [gameStarted, setGameStarted] = useState(false);
+    const [visibleNewGame, setVisibleNewGame] = useState(true);
+    const [collision, setCollision] = useState(false);
+    const [player, setPlayer] = useState(new Player(10, 10, "red"));
+    const savedBestRes = localStorage.getItem("bestResult") ?? "0";
+    const [bestResult, setBestResult] = useState(parseInt(savedBestRes, 10));
+    //this is for stopwatch
+    const [time, setTime] = useState(new Date(0));
+    const [startTime, setStartTime] = useState<number | null>(null);
+    const [running, setRunning] = useState(false);
 
-    var player = new Player(10, 10, "red");
+    const startStopwatch = () => {
+        const newStartTime = new Date().getTime();
+        setStartTime(newStartTime);
+        setRunning(true);
+    };
 
-    const handleStartGame = () => {
-        setGameStarted(true);
-        setVisible(false);
+    const endStopwatch = () => {
+        if (running) {
+            setRunning(false);
+        }
+    };
+
+    const resetStopwatch = () => {
+        setTime(new Date(0));
+        setStartTime(null);
+    };
+
+    const formattedTime = (millisec: any) => {
+        const t = new Date(millisec);
+        const minutes = format(t, "mm");
+        const seconds = format(t, "ss");
+        const milliseconds = format(t, "SS");
+        return `${minutes}:${seconds}:${milliseconds}`;
     };
 
     useEffect(() => {
-        startGame(player);
+        if (running) {
+            const interval = setInterval(() => {
+                setTime(new Date(new Date().getTime() - (startTime || 0)));
+            }, 10);
 
+            return () => clearInterval(interval);
+        }
+    }, [running, startTime, time]);
+
+    const handleStartGame = () => {
+        setVisibleNewGame(false);
+        resetStopwatch();
+        startStopwatch();
+        startGame(player, setCollision);
+    };
+
+    useEffect(() => {
+        if (collision) {
+            setVisibleNewGame(true);
+            setCollision(false);
+            endStopwatch();
+
+            //azuriranje najboljeg rezultata
+            if (time.getTime() > bestResult) {
+                setBestResult(time.getTime());
+                localStorage.setItem("bestResult", time.getTime().toString());
+            }
+        }
+    }, [collision]);
+
+    useEffect(() => {
         document.addEventListener("keyup", e => {
             if (player) {
                 if (e.key === "ArrowUp" || e.key === "ArrowDown") {
@@ -54,16 +108,20 @@ export const HomePage = () => {
 
     return (
         <div className="home-page-container">
+            <h1>{formattedTime(time.getTime())}</h1>
             <div id="home-page-container-canvas" />
-            {/*
-            <Dialog visible={visible} onHide={() => setVisible(false)} header={"Start new game"}>
+            <Dialog
+                visible={visibleNewGame}
+                onHide={() => setVisibleNewGame(false)}
+                className="dialog-start-new-game"
+                header={"Start new game"}
+            >
                 <div>
-                    <p>Currently best result: {localStorage.getItem("best-result")}</p>
+                    <p>Currently result: {formattedTime(time.getTime())}</p>
+                    <p>Best result: {formattedTime(bestResult)}</p>
                     <Button label="New game" onClick={handleStartGame}></Button>
                 </div>
             </Dialog>
-            
-            */}
         </div>
     );
 };

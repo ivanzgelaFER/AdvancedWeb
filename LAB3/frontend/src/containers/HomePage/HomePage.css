@@ -6,10 +6,14 @@
 }
 
 #home-page-container-canvas {
-    margin-top: 4%;
+    /*margin-top: 0%;*/
 }
 
 #canvas-container {
-    border: 2px solid #e47171;
+    border: 2px solid black;
     background-color: rgb(255, 255, 255);
+}
+
+.p-dialog .p-dialog-header .p-dialog-title {
+    padding-right: 10px;
 }
