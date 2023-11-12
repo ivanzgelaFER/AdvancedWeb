@@ -122,7 +122,8 @@ function updateGameArea() {
     
     //predefinirano ucestalost pojavljivanje asteroida
     //svakih 10 frameova se stvara novi asteroid, ovime kontroliram brzinu stvaranja asteroida
-    if (myGameArea.frameNo % 10 === 0) { 
+    if (myGameArea.frameNo % 10 === 0) {
+        //slucajne brzine asteroida
         var x = Math.random() > 0.5 ? -20 : myGameArea.canvas.width + 20;
         var y = Math.random() * myGameArea.canvas.height;
         // slucajne brzine asteroida 
@@ -131,7 +132,7 @@ function updateGameArea() {
         // slucajna boja asteroida - nijanse sive boje
         const grayValue = Math.floor(Math.random() * 101) + 50;
         const grayColor = `rgb(${grayValue}, ${grayValue}, ${grayValue})`;
-        asteroids.push(new Asteroid(8, 8, grayColor, x, y, speedX, speedY));
+        asteroids.push(new Asteroid(10, 10, grayColor, x, y, speedX, speedY));
     }
 
     // ovime provjeravam da li je igrac udario u asteroid
@@ -142,6 +143,7 @@ function updateGameArea() {
             player.y < asteroids[i].y + asteroids[i].height &&
             player.y + player.height > asteroids[i].y
         ) {
+            //ako se dogodio sudar generira se zvuk i prekida se igra
             playCollisionSound();
             setCollisionRef(true);
             myGameArea.stop();

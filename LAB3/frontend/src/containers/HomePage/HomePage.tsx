@@ -8,7 +8,7 @@ import { format, set } from "date-fns";
 export const HomePage = () => {
     const [visibleNewGame, setVisibleNewGame] = useState(true);
     const [collision, setCollision] = useState(false);
-    const [player, setPlayer] = useState(new Player(8, 8, "red"));
+    const [player, setPlayer] = useState(new Player(10, 10, "red"));
     const savedBestRes = localStorage.getItem("bestResult") ?? "0";
     const [bestResult, setBestResult] = useState(parseInt(savedBestRes, 10));
     //this is for stopwatch
