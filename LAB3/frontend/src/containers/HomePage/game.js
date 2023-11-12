@@ -49,7 +49,7 @@ export function Player(width, height, color, type) {
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.fillStyle = "rgba(255, 0, 0, 0.4)";
-        ctx.fillRect((this.width / -2) - 1, (this.height / -2) - 1, this.width + 2, this.height + 2);
+        ctx.fillRect(- 1, - 1, this.width + 2, this.height + 2);
         ctx.restore();
 
         //ovime stvaram igraca
@@ -59,11 +59,11 @@ export function Player(width, height, color, type) {
         //ovime stvaram okvir igraca
         ctx.strokeStyle = "rgba(255, 255, 255, 0.8)";
         ctx.lineWidth = 1;
-        ctx.strokeRect(this.width / -2, this.height / -2, this.width, this.height);
+        ctx.strokeRect(0, 0, this.width, this.height);
 
         //ovime stvaram tijelo igraca
         ctx.fillStyle = color;
-        ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);
+        ctx.fillRect(0, 0, this.width, this.height);
         ctx.restore();
     };
 
@@ -111,6 +111,11 @@ export function Asteroid(width, height, color, x, y, speed_x, speed_y, type) {
     }
 }
 
+function playCollisionSound() {
+    var collisionSound = document.getElementById("collisionSound");
+    collisionSound.play();
+}
+
 function updateGameArea() {
     myGameArea.clear();
     myGameArea.incrementFrame();
@@ -126,7 +131,7 @@ function updateGameArea() {
         // slucajna boja asteroida - nijanse sive boje
         const grayValue = Math.floor(Math.random() * 101) + 50;
         const grayColor = `rgb(${grayValue}, ${grayValue}, ${grayValue})`;
-        asteroids.push(new Asteroid(10, 10, grayColor, x, y, speedX, speedY));
+        asteroids.push(new Asteroid(8, 8, grayColor, x, y, speedX, speedY));
     }
 
     // ovime provjeravam da li je igrac udario u asteroid
@@ -137,6 +142,7 @@ function updateGameArea() {
             player.y < asteroids[i].y + asteroids[i].height &&
             player.y + player.height > asteroids[i].y
         ) {
+            playCollisionSound();
             setCollisionRef(true);
             myGameArea.stop();
         }
