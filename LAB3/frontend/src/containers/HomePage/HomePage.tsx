@@ -109,7 +109,7 @@ export const HomePage = () => {
     return (
         <div className="home-page-container">
             <h1>
-                Best result: {formattedTime(bestResult)} Current result:
+                Best result: {formattedTime(bestResult)} Current result:{" "}
                 {formattedTime(time.getTime())}
             </h1>
             <div id="home-page-container-canvas" />
