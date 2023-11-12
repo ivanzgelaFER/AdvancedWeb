@@ -109,7 +109,7 @@ export const HomePage = () => {
     return (
         <div className="home-page-container">
             <h1>
-                Best time: {formattedTime(bestResult)} Current time:
+                Best result: {formattedTime(bestResult)} Current result:
                 {formattedTime(time.getTime())}
             </h1>
             <div id="home-page-container-canvas" />
@@ -121,7 +121,7 @@ export const HomePage = () => {
                 header={"Start new game"}
             >
                 <div>
-                    <p>Currently result: {formattedTime(time.getTime())}</p>
+                    <p>Current result: {formattedTime(time.getTime())}</p>
                     <p>Best result: {formattedTime(bestResult)}</p>
                     <Button label="New game" onClick={handleStartGame}></Button>
                 </div>
