@@ -43,6 +43,7 @@ var uploadSnaps = multer({
         },
     })
 }).single("image");
+
 app.post("/saveSnap",  function (req, res) {
     uploadSnaps(req, res, async function(err) {
         if (err) {

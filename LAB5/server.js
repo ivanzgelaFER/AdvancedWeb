@@ -19,13 +19,13 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "public", "index.html"));
 });
-/*
-// potrebno za VER05+
-const UPLOAD_PATH = path.join(__dirname, "public", VERSION, "uploads");
+
+const SLIKE_ZA_UPIS = path.join(__dirname, "public", "slike_za_upis");
+
 var uploadSnaps = multer({
     storage:  multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, UPLOAD_PATH);
+            cb(null, SLIKE_ZA_UPIS);
         },
         filename: function (req, file, cb) {
             let fn = file.originalname.replaceAll(":", "-");
@@ -33,6 +33,7 @@ var uploadSnaps = multer({
         },
     })
 }).single("image");
+
 app.post("/saveSnap",  function (req, res) {
     uploadSnaps(req, res, async function(err) {
         if (err) {
@@ -51,20 +52,14 @@ app.post("/saveSnap",  function (req, res) {
     });
 });
 app.get("/snaps", function (req, res) {
-    let files = fse.readdirSync(UPLOAD_PATH);
+    let files = fse.readdirSync(SLIKE_ZA_UPIS);
     files = files.reverse().slice(0, 10);
-    console.log("In", UPLOAD_PATH, "there are", files);
     res.json({
         files
     });
 });
-// /potrebno za VER05+
 
-
-
-
-
-// potrebno na VER06
+/*
 const webpush = require('web-push');
 
 // Umjesto baze podataka, čuvam pretplate u datoteci: 

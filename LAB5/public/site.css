@@ -1,4 +1,86 @@
-.offline-warning {
-    color: red;
-    font-weight: 500;
+body {
+    margin: 0;
+}
+.news-container-outside {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.news-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: 95%;
+}
+
+.news-container-card {
+    justify-content: center;
+    max-width: 100%;
+    padding: 10px;
+    margin: 10px;
+    background: #e6e6e6;
+}
+
+.img-design {
+    width: 100%;
+    object-fit: cover;
+}
+
+.news-title {
+    padding-left: 3%;
+}
+
+.home-page-title {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+.promocije-container {
+    position: relative;
+    max-width: 100%; 
+}
+.promocije-img {
+    width: 100%;
+    display: block;
+}
+
+.promocije-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: rgb(255, 255, 255); 
+    font-size: 120%;
+    z-index: 1; 
+    font-weight: 1000; 
+}
+
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    height: 50px;
+    background-color: #333;
+}
+ 
+.intranet-btn {
+    padding: 5px;
+    height: 100%;
+    width: 100px;
+    background: #ff8240 !important;
+}
+
+.intranet-btn-user {
+    display: flex;
+    justify-content: center;
+    min-width: 100px;
+    background-color: #333;
+    color:white;
+}
+
+.intranet-btn > a {
+    text-decoration: none;
+    color: white;
+    font-weight: 400;
+    font-size: 1.1em;
 }

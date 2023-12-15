@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LAB5_PWA</title>
+
+        <link rel="stylesheet" href="./site.css" />
+        <link rel="manifest" href="./manifest.json" />
+    </head>
+
+    <body>
+        <div>
+          <h1>Welcome on Intranet</h1>  
+        </div>
+        <div>
+            <div>
+                <h2>Preddiplomski studij završen!</h2>
+                <h3>Ako želite upisati diplomski studij unesite podatke za upis</h3>
+            </div>
+            <h2>Upis na diplomski</h2>
+            <div></div>
+            <div><p>Uslikajte se za novu iksicu</p></div>
+            <div>
+                <div>
+                    Popis slika za novu iksicu
+                </div>
+                <div id="iksica_img">
+                    <template id="slikeTemplate">
+                      <div class="d-flex flex-column align-items-center p-1 shadow p-3 mb-2 bg-white rounded">
+                        <img class="img-fluid" src="tbd"/>
+                        <h3>title</h3>
+                      </div>
+                    </template>
+                  </div>
+            </div>
+        </div>
+        <script>
+            import {
+                get,
+                set,
+            } from "https://cdn.jsdelivr.net/npm/idb-keyval@6/+esm";
+
+            navigator.serviceWorker.register('./sw.js', {type: 'module'})
+                .then(reg => console.log('SW registered!', reg))
+                .catch(err => console.error('Error registering service worker', err));
+            fetch("/snaps").then((res) => {
+                if (res.ok) {
+                    res.json().then((data) => {
+                        data.files.forEach((fileName) => {
+                            let snapsDiv = document.querySelector("#iksica_img");
+                            let template = document.querySelector('#slikeTemplate');
+                            var clone = template.content.cloneNode(true);
+                            let img = clone.querySelector("img");
+                            img.src = "/slike_za_upis/" + fileName;
+                            let title = clone.querySelector("h3");
+                            title.textContent = fileName.substring(24).replaceAll("_", " ").replaceAll(".png", "");
+                            snapsDiv.appendChild(clone);
+                        });
+                    })
+                }
+            }).catch(err => {
+            console.log(err);
+            });
+
+            let player = document.getElementById("player");
+            let canvas = document.getElementById("cnvFood");
+            let beforeSnap = document.getElementById("beforeSnap");
+            let afterSnap = document.getElementById("afterSnap");
+            let snapName = document.getElementById("snapName");
+            let startCapture = function () {                
+                beforeSnap.classList.remove("d-none");
+                beforeSnap.classList.add("d-flex", "flex-column", "align-items-center");
+                afterSnap.classList.remove("d-flex", "flex-column", "align-items-center");
+                afterSnap.classList.add("d-none");
+                if (!("mediaDevices" in navigator)) {
+                    // fallback to file upload button, ili sl.
+                    // vidjet i custom API-je: webkitGetUserMedia i mozGetUserMedia
+                } else {
+                    navigator.mediaDevices
+                        .getUserMedia({ video: true, audio: false })
+                        .then((stream) => {
+                            player.srcObject = stream;
+                        })
+                        .catch((err) => {
+                            alert("Media stream not working");
+                            console.log(err);
+                        });
+                }
+            };
+            startCapture();
+            let stopCapture = function () {
+                afterSnap.classList.remove("d-none");
+                afterSnap.classList.add("d-flex", "flex-column", "align-items-center");
+                beforeSnap.classList.remove("d-flex", "flex-column", "align-items-center");
+                beforeSnap.classList.add("d-none");
+                player.srcObject.getVideoTracks().forEach(function (track) {
+                    track.stop();
+                });
+            }
+            document
+                .getElementById("btnSnap")
+                .addEventListener("click", function (event) {
+                    canvas.width = player.getBoundingClientRect().width;
+                    canvas.height = player.getBoundingClientRect().height;                    
+                    canvas
+                        .getContext("2d")
+                        .drawImage(player, 0, 0, canvas.width, canvas.height);
+                    stopCapture();
+                });
+            document
+                .getElementById("btnUpload")
+                .addEventListener("click", function (event) {
+                    event.preventDefault();
+                    if (!snapName.value.trim()) {
+                        alert("Give it a cathcy name!");
+                        return false;
+                    }
+                    if (
+                        "serviceWorker" in navigator &&
+                        "SyncManager" in window
+                    ) {
+                        let url = canvas.toDataURL();
+                        fetch(url)
+                            .then((res) => res.blob())
+                            .then((blob) => {
+                                let ts = new Date().toISOString();
+                                let id = ts + snapName.value.replace(/\s/g, '_');  // ws->_
+                                set(id, {
+                                    id,
+                                    ts,
+                                    title: snapName.value,
+                                    image: blob
+                                });
+                                return navigator.serviceWorker.ready;
+                            })
+                            .then((swRegistration) => {
+                                return swRegistration.sync.register(
+                                    "sync-snaps"
+                                );
+                            })
+                            .then(() => {
+                                console.log("Queued for sync");
+                                startCapture();
+                            })
+                            .catch((err) => {
+                                console.log(error);
+                            });
+                    } else {
+                        // fallback
+                        // pokusati poslati, pa ako ima mreze onda dobro...
+                        alert("TODO - vaš preglednik ne podržava bckg sync...");
+                    }
+                });
+        </script>
+    </body>
+</html>
