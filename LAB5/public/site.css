@@ -84,3 +84,26 @@ body {
     font-weight: 400;
     font-size: 1.1em;
 }
+
+.iksica-imgs-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+}
+
+.img-container-card {
+    display: flex;
+    padding: 10px;
+    margin: 10px;
+    background: #e6e6e6;
+}
+
+.img-container-card-img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.img-title {
+    display: flex;
+    justify-content: center;
+}

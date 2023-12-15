@@ -20,12 +20,12 @@ app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-const SLIKE_ZA_UPIS = path.join(__dirname, "public", "slike_za_upis");
+const UPLOAD_PATH = path.join(__dirname, "public", "uploads");
 
 var uploadSnaps = multer({
     storage:  multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, SLIKE_ZA_UPIS);
+            cb(null, UPLOAD_PATH);
         },
         filename: function (req, file, cb) {
             let fn = file.originalname.replaceAll(":", "-");
@@ -47,13 +47,13 @@ app.post("/saveSnap",  function (req, res) {
         } else {
             console.log(req.body);
             res.json({ success: true, id: req.body.id });
-            if (VERSION==="06") await sendPushNotifications(req.body.title);
         }
     });
 });
 app.get("/snaps", function (req, res) {
-    let files = fse.readdirSync(SLIKE_ZA_UPIS);
+    let files = fse.readdirSync(UPLOAD_PATH);
     files = files.reverse().slice(0, 10);
+    console.log("In", UPLOAD_PATH, "there are", files);
     res.json({
         files
     });
