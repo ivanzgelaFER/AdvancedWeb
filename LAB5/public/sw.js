@@ -86,7 +86,7 @@ self.addEventListener("sync", function (event) {
 let syncSnaps = async function () {
     entries().then((entries) => {
         entries.forEach((entry) => {
-            let snap = entry[1]; //  Each entry is an array of [key, value].
+            let snap = entry[1];
             let formData = new FormData();
             formData.append("id", snap.id);
             formData.append("ts", snap.ts);
