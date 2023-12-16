@@ -64,9 +64,8 @@ body {
 }
  
 .intranet-btn {
-    padding: 5px;
     height: 100%;
-    width: 100px;
+    width: 90px;
     background: #ff8240 !important;
 }
 
@@ -96,6 +95,7 @@ body {
     padding: 10px;
     margin: 10px;
     background: #e6e6e6;
+    border: 1px solid black;
 }
 
 .img-container-card-img {
@@ -110,4 +110,99 @@ body {
 
 .navbar-end-container {
     display: flex;
+    align-items: center;
+}
+
+.navbar-homepage-btn {
+    color: white;
+    background: rgb(150, 150, 255);
+    text-decoration: none;
+}
+
+.navbar-homepage-btn > a {
+    text-decoration: none;
+}
+.intranet {
+    font-size: 1.6em;
+}
+
+.intranet-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    height: 100%;
+}
+.intranet-container p {
+    color: red
+}
+
+.intranet-form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+}
+
+.intranet-form-container input {
+    font-size: 25px;
+}
+
+.form-container-desing {
+    justify-content: center;
+    text-align: center;
+    background: #e6e6e6;
+    min-width: 37%;
+    border: 1px solid black;
+}
+
+.intranet-form-container > div {
+    padding: 10px;
+}
+ 
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.studio-container {
+    margin: 10px;
+}
+
+.submit-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.submit-btn > button {
+    font-size: 25px;
+}
+
+.img-gal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery {
+    margin: 5%;
+    margin-top: 10px;
+    background: white;
+}
+
+.studio-btn {
+    width: 20%;
+    background: #ff8240 !important;
+    padding: 20px;
+}
+
+.studio-btn > a {
+    text-decoration: none;
+    color: white;
+    font-weight: 400;
+    font-size: 1.1em;
 }

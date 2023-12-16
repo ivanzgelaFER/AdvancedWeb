@@ -14,28 +14,69 @@
         <div>
             <nav class="navbar">
                 <div class="intranet-btn-user">
-                    <button>Home page</button>
+                    <button class="navbar-homepage-btn">
+                        <a href="./index.html">Početna stranica</a>
+                    </button>
                 </div>
                 <div class="navbar-end-container">
                     <div class="intranet-container"><button class="intranet-btn"><a href="/intranet.html">Intranet</a></button></div>
                     <div class="intranet-btn-user"><div><p>Ivan</p></div></div>
                 </div>
             </nav>
-            <div>
-                <h2>Preddiplomski studij završen!</h2>
-                <h3>Ako želite upisati diplomski studij unesite podatke za upis</h3>
-            </div>
-            <h2>Upis na diplomski</h2>
-            <div><p>Uslikajte se za novu iksicu</p></div>
-            <div>
+            <div class="intranet-container">
                 <div>
-                    Popis slika za novu iksicu
+                    <h2>Preddiplomski studij završen!</h2>
+                    <h5>Trenutno nema ponuđenih predmeta, rasporeda i ostalih opcija</h5>
+                    <p>Ako želite upisati diplomski studij unesite tražene podatke</p>
                 </div>
-                <button class="intranet-btn">
-                    <a href="/photo_studio.html">Odlazak u studio za fotografiranje</a>
-                </button>
-                <div>
-
+                <div class="form-container-desing">
+                    <h3>Upis na diplomski studij</h3>
+                    <form action="/">
+                        <div class="image-container">
+                            <img src="./slike_za_upis/1.jpg" alt="dama">
+                        </div>
+                        <div class="intranet-form-container">
+                            <div>
+                                <label for="ime">Ime:</label><br>
+                                <input type="text" id="ime" name="ime" value=""><br>
+                            </div>
+                            <div>
+                                <label for="prezime">Prezime:</label><br>
+                                <input type="text" id="prezime" name="prezime" value=""><br>
+                            </div>
+                            <div>
+                                <label for="oib">OIB:</label><br>
+                                <input type="text" id="oib" name="oib" value=""><br>
+                            </div>
+                            <div>
+                                <label for="email">Email:</label><br>
+                                <input type="text" id="email" name="email" value="">
+                            </div>
+                            <div>
+                                <label for="drzavljanstvo">Državljanstvo:</label><br>
+                                <input type="text" id="drzavljanstvo" name="drzavljanstvo" value=""><br>
+                            </div>
+                            <div>
+                                <label for="narodnost">Narodnost:</label><br>
+                                <input type="text" id="narodnost" name="narodnost" value="">
+                            </div>
+                        </div>
+                        <div class="submit-btn">
+                            <button>Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="gallery">
+                <div class="img-gal">
+                    <h1>Galerija slika</h1>
+                </div>
+                <div class="studio-container">
+                    <button class="studio-btn">
+                        <a href="/photo_studio.html">
+                            Odlazak u studio za fotografiranje
+                        </a>
+                    </button>
                 </div>
                 <div id="snaps" class="iksica-imgs-container">
                     <template id="snapTemplate">
