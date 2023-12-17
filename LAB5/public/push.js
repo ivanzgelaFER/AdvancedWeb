@@ -1,13 +1,13 @@
-let btnNotif = document.getElementById("btnEnableNotifications");
+let btnNotif = document.getElementById("notific");
 
-if ("Notification" in window && "serviceWorker" in navigator) {
+if ("serviceWorker" in navigator && "Notification" in window) {
+
     btnNotif.addEventListener("click", function () {
         Notification.requestPermission(async function (res) {
-            console.log("Request permission result:", res);
             if (res === "granted") {
                 await setupPushSubscription();
             } else {
-                console.log("User denied push notifs:", res);
+                console.log("Korisnik je odbio primati notifikacije:", res);
             }
         });
     });
@@ -52,12 +52,11 @@ async function setupPushSubscription() {
             });
             if (res.ok) {
                 alert(
-                    "Yay, subscription generated and saved:\n" +
-                        JSON.stringify(sub)
+                    "Pretplata je generirana i spremljena!"
                 );
             }
         } else {
-            alert("You are alreay subscribed:\n" + JSON.stringify(sub));
+            alert("Već ste pretplaćeni!");
         }
     } catch (error) {
         console.log(error);

@@ -115,9 +115,8 @@ let syncSnaps = async function () {
 
 self.addEventListener("notificationclick", function (event) {
     let notification = event.notification;
-    // mogli smo i definirati actions, pa ovdje granati s obzirom na:
-    // let action = event.action;
-    console.log("notification", notification);
+    console.log("notificationclick", event);
+
     event.waitUntil(
         clients.matchAll().then(function (clis) {
             clis.forEach((client) => {
@@ -144,8 +143,6 @@ self.addEventListener("push", function (event) {
 
     var options = {
         body: data.body,
-        icon: "assets/img/android/android-launchericon-96-96.png",
-        badge: "assets/img/android/android-launchericon-96-96.png",
         vibrate: [200, 100, 200, 100, 200, 100, 200],
         data: {
             redirectUrl: data.redirectUrl,

@@ -45,8 +45,8 @@ app.post("/saveSnap",  function (req, res) {
                 }
             });
         } else {
-            console.log(req.body);
             res.json({ success: true, id: req.body.id });
+            await sendPushNotifications(req.body.title);
         }
     });
 });
@@ -62,6 +62,7 @@ app.get("/snaps", function (req, res) {
 
 let subscriptions = [];
 const SUBS_FILENAME = 'pretplate.json';
+
 try {
     subscriptions = JSON.parse(fs.readFileSync(SUBS_FILENAME));
 } catch (error) {
@@ -69,7 +70,6 @@ try {
 }
 
 app.post("/saveSubscription", function(req, res) {
-    console.log(req.body);
     let sub = req.body.sub;
     subscriptions.push(sub);
     fs.writeFileSync(SUBS_FILENAME, JSON.stringify(subscriptions));
@@ -79,16 +79,17 @@ app.post("/saveSubscription", function(req, res) {
 });
 
 async function sendPushNotifications(snapTitle) {
+
     webpush.setVapidDetails('mailto:ivan.zgela@fer.hr', 
     'BL1oXiSXCjKRPParkSNUP7ik7Ltl3RpPUxurkh7ro4rdpNLylON7f3xxZryBF_xN8CqxvemlVdT2EJGH33qe5iw', 
     '4B9u-sA9uJ8zISw3FXlsbbsaVixK3NJn6o_BZshEZnI');
+
     subscriptions.forEach(async sub => {
         try {
-            console.log("Sending notif to", sub);
             await webpush.sendNotification(sub, JSON.stringify({
-                title: 'New snap!',
-                body: 'Somebody just snaped a new photo: ' + snapTitle,
-                redirectUrl: '/index.html'
+                title: 'Nova slika za iksicu uslikana',
+                body: 'Uslikana je slika pod nazivom: ' + snapTitle,
+                redirectUrl: '/intranet.html'
               }));    
         } catch (error) {
             console.error(error);

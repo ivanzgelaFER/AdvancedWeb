@@ -23,7 +23,7 @@
                     <div class="intranet-btn-user"><div><p>Ivan</p></div></div>
                 </div>
             </nav>
-            <button id="btnEnableNotifications" class="btn btn-outline-success">
+            <button id="notific" class="btn btn-outline-success">
                 Uključi notifikacije
             </button>
             <div class="intranet-container">
@@ -36,7 +36,7 @@
                     <h3>Upis na diplomski studij</h3>
                     <form action="/">
                         <div class="image-container">
-                            <img id="mainImage" src="./slike_za_upis/1.jpg" alt="dama">
+                            <img id="mainImage" src="./slike_za_upis/2023-12-16T16-20-11.404Zanonimus.jpg" alt="dama">
                         </div>
                         <div class="intranet-form-container">
                             <div>
@@ -102,13 +102,10 @@
 
             fetch("/snaps")
                 .then((res) => {
-                    console.log("res", res)
                     if (res.ok) {
                         res.json()
                             .then((data) => {
-                                console.log("data", data)
                                 data.files.forEach((fileName) => {
-                                    console.log("appending", fileName)
                                     let snapsDiv = document.querySelector("#snaps");
                                     let template = document.querySelector('#snapTemplate');
                                     var clone = template.content.cloneNode(true);
