@@ -1,11 +1,15 @@
 import { del, entries } from "./idb-keyval.js";
 //popis zahtjeva koji ce se inicijalno spremiti u cache
 const filesToCache = [
+    "/",
     "manifest.json",
     "index.html",
+    "intranet.html",
     "offline.html",
     "404.html",
-    "/",
+    "photo_studio.html",
+    "ferweb/promocije.png",
+    "site.css",
     "https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap",
     "https://fonts.gstatic.com/s/firasans/v11/va9E4kDNxMZdWfMOD5Vvl4jLazX3dA.woff2",
     "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css",
