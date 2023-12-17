@@ -80,7 +80,7 @@ app.post("/saveSubscription", function(req, res) {
 
 async function pushNotifikacija(snapTitle) {
 
-    webpush.setVapidDetails('mailto:ivanzgela7755@gmail.com', 
+    webpush.setVapidDetails('mailto:ivan.zgela@gmail.com', 
     'BLCoHZI6x0-BCRYt508t0ZJmI9S4qWrIEy99lZ2lnNjbM7ttEM472g0Pc2IO6tkGUeiJFyytvqCyl4ssFVDXiek', 
     'ZeINuYLv26FhUplmi-oUmZeebzBsxpMvvTBBC8-DePg');
 
