@@ -98,7 +98,7 @@ app.post("/saveSubscription", function(req, res) {
 });
 
 async function sendPushNotifications(snapTitle) {
-    webpush.setVapidDetails('mailto:igor.mekterovic@fer.hr', 
+    webpush.setVapidDetails('mailto:iz53036@fer.hr', 
     'BL1oXiSXCjKRPParkSNUP7ik7Ltl3RpPUxurkh7ro4rdpNLylON7f3xxZryBF_xN8CqxvemlVdT2EJGH33qe5iw', 
     '4B9u-sA9uJ8zISw3FXlsbbsaVixK3NJn6o_BZshEZnI');
     subscriptions.forEach(async sub => {

@@ -59,12 +59,9 @@ app.get("/snaps", function (req, res) {
     });
 });
 
-/*
-const webpush = require('web-push');
 
-// Umjesto baze podataka, čuvam pretplate u datoteci: 
 let subscriptions = [];
-const SUBS_FILENAME = 'subscriptions.json';
+const SUBS_FILENAME = 'pretplate.json';
 try {
     subscriptions = JSON.parse(fs.readFileSync(SUBS_FILENAME));
 } catch (error) {
@@ -82,7 +79,7 @@ app.post("/saveSubscription", function(req, res) {
 });
 
 async function sendPushNotifications(snapTitle) {
-    webpush.setVapidDetails('mailto:igor.mekterovic@fer.hr', 
+    webpush.setVapidDetails('mailto:ivan.zgela@fer.hr', 
     'BL1oXiSXCjKRPParkSNUP7ik7Ltl3RpPUxurkh7ro4rdpNLylON7f3xxZryBF_xN8CqxvemlVdT2EJGH33qe5iw', 
     '4B9u-sA9uJ8zISw3FXlsbbsaVixK3NJn6o_BZshEZnI');
     subscriptions.forEach(async sub => {
@@ -98,8 +95,6 @@ async function sendPushNotifications(snapTitle) {
         }
     });
 }
-// /potrebno na VER06
-*/
 
 
 app.listen(httpPort, function () {

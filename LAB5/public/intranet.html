@@ -23,6 +23,9 @@
                     <div class="intranet-btn-user"><div><p>Ivan</p></div></div>
                 </div>
             </nav>
+            <button id="btnEnableNotifications" class="btn btn-outline-success">
+                Uključi notifikacije
+            </button>
             <div class="intranet-container">
                 <div>
                     <h2>Preddiplomski studij završen!</h2>
@@ -33,7 +36,7 @@
                     <h3>Upis na diplomski studij</h3>
                     <form action="/">
                         <div class="image-container">
-                            <img src="./slike_za_upis/1.jpg" alt="dama">
+                            <img id="mainImage" src="./slike_za_upis/1.jpg" alt="dama">
                         </div>
                         <div class="intranet-form-container">
                             <div>
@@ -93,32 +96,35 @@
             </div>
         </div>
         <script>
-            navigator.serviceWorker.register('./sw.js', {type: 'module'})
+            navigator.serviceWorker.register('./sw.js', { type: 'module' })
                 .then(reg => console.log('SW registered!', reg))
                 .catch(err => console.error('Error registering service worker', err));
+
             fetch("/snaps")
                 .then((res) => {
-                console.log("res", res)
-                if (res.ok) {
-                    res.json()
-                    .then((data) => {
-                    console.log("data", data)
-                    data.files.forEach((fileName) => {
-                        console.log("appending", fileName)
-                        let snapsDiv = document.querySelector("#snaps");
-                        let template = document.querySelector('#snapTemplate');
-                        var clone = template.content.cloneNode(true);
-                        let img = clone.querySelector("img");
-                        img.src = "/uploads/" + fileName;
-                        let title = clone.querySelector("h3");
-                        title.textContent = fileName.substring(24).replaceAll("_", " ").replaceAll(".png", "");
-                        snapsDiv.appendChild(clone);
-                    });
-                    })
-                }
-            }).catch(err => {
-                console.log(err);
-            })           
+                    console.log("res", res)
+                    if (res.ok) {
+                        res.json()
+                            .then((data) => {
+                                console.log("data", data)
+                                data.files.forEach((fileName) => {
+                                    console.log("appending", fileName)
+                                    let snapsDiv = document.querySelector("#snaps");
+                                    let template = document.querySelector('#snapTemplate');
+                                    var clone = template.content.cloneNode(true);
+                                    let img = clone.querySelector("img");
+                                    img.src = "/uploads/" + fileName;
+                                    let title = clone.querySelector("h3");
+                                    title.textContent = fileName.substring(24).replaceAll("_", " ").replaceAll(".png", "");
+                                    snapsDiv.appendChild(clone);
+                                    
+                                });
+                            })
+                    }
+                }).catch(err => {
+                    console.log(err);
+                })
         </script>
+        <script src="push.js"></script>
     </body>
 </html>
