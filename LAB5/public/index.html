@@ -8,16 +8,16 @@
 
         <link rel="stylesheet" href="./site.css" />
         <link rel="manifest" href="./manifest.json" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     </head>
 
     <body>
         <div>
-            <nav class="navbar">
-                <div class="intranet-btn-user">
-                    <button class="navbar-homepage-btn">
-                        <a href="./index.html">Početna stranica</a>
-                    </button>
-                </div>
+            <nav class="navbar-header">
+                <button id="homepage-btn">
+                    <i class="fa fa-home"></i>
+                </button>
                 <div class="navbar-end-container">
                     <div class="intranet-container"><button class="intranet-btn"><a href="/intranet.html">Intranet</a></button></div>
                     <div class="intranet-btn-user"><div><p>Ivan</p></div></div>
@@ -94,6 +94,11 @@
             navigator.serviceWorker.register('./sw.js', {type: 'module'})
               .then(reg => console.log('SW lab5 registered!', reg))
               .catch(err => console.error('Error registering service worker', err));
+        </script>
+        <script type="text/javascript">
+            document.getElementById("homepage-btn").onclick = function () {
+                location.href = "./index.html";
+            };
         </script>
     </body>
 </html>

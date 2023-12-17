@@ -8,23 +8,22 @@
 
         <link rel="stylesheet" href="./site.css" />
         <link rel="manifest" href="./manifest.json" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
     <body>
         <div>
-            <nav class="navbar">
-                <div class="intranet-btn-user">
-                    <button class="navbar-homepage-btn">
-                        <a href="./index.html">Početna stranica</a>
-                    </button>
-                </div>
+            <nav class="navbar-header">
+                <button id="homepage-btn">
+                    <i class="fa fa-home"></i>
+                </button>
                 <div class="navbar-end-container">
                     <div class="intranet-container"><button class="intranet-btn"><a href="/intranet.html">Intranet</a></button></div>
                     <div class="intranet-btn-user"><div><p>Ivan</p></div></div>
                 </div>
             </nav>
-            <button id="notific" class="btn btn-outline-success">
-                Uključi notifikacije
+            <button id="notific" class="notification-button">
+                Pretplati se na obavijesti!
             </button>
             <div class="intranet-container">
                 <div>
@@ -36,7 +35,7 @@
                     <h3>Upis na diplomski studij</h3>
                     <form action="/">
                         <div class="image-container">
-                            <img id="mainImage" src="./slike_za_upis/2023-12-16T16-20-11.404Zanonimus.jpg" alt="dama">
+                            <img id="mainImage" src="./uploads/2023-12-16T16-20-11.404Zgirl_1.jpg" alt="slika_za_iksicu">
                         </div>
                         <div class="intranet-form-container">
                             <div>
@@ -83,14 +82,16 @@
                 </div>
                 <div id="snaps" class="iksica-imgs-container">
                     <template id="snapTemplate">
-                      <div class="img-container-card">
-                        <div>
-                            <img class="img-container-card-img" src="tbd"/>
-                            <div class="img-title">
-                                <h3>title</h3>
+                        <button id="card-btn">
+                            <div class="img-container-card">
+                              <div>
+                                  <img class="img-container-card-img" src="tbd"/>
+                                  <div class="img-title">
+                                      <h3>title</h3>
+                                  </div>
+                              </div>
                             </div>
-                        </div>
-                      </div>
+                        </button>
                     </template>
                 </div>
             </div>
@@ -116,12 +117,34 @@
                                     snapsDiv.appendChild(clone);
                                     
                                 });
+                                attachEventListeners();
                             })
                     }
                 }).catch(err => {
                     console.log(err);
                 })
+
+                function attachEventListeners() {
+                    let cardBtns = document.querySelectorAll("#snaps #card-btn");
+
+                    cardBtns.forEach(function (btn) {
+                        btn.addEventListener("click", function () {
+                            let imgSrc = this.querySelector("img").src;
+                            let imgTitle = this.querySelector("h3").textContent;
+
+                            let mainImage = document.getElementById("mainImage");
+
+                            mainImage.src = imgSrc;
+                            mainImage.alt = imgTitle;
+                        });
+                    });
+                }
         </script>
         <script src="push.js"></script>
+        <script type="text/javascript">
+            document.getElementById("homepage-btn").onclick = function () {
+                location.href = "./index.html";
+            };
+        </script>
     </body>
 </html>

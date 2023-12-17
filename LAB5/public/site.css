@@ -56,7 +56,7 @@ body {
     font-weight: 1000; 
 }
 
-.navbar {
+.navbar-header {
     display: flex;
     justify-content: space-between;
     height: 50px;
@@ -67,6 +67,7 @@ body {
     height: 100%;
     width: 90px;
     background: #ff8240 !important;
+    font-size: 15px !important;
 }
 
 .intranet-btn-user {
@@ -81,13 +82,14 @@ body {
     text-decoration: none;
     color: white;
     font-weight: 400;
-    font-size: 1.1em;
+    font-size: 1.1em !important;
 }
 
 .iksica-imgs-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     justify-content: center;
+    gap: 15px;
 }
 
 .img-container-card {
@@ -95,7 +97,6 @@ body {
     padding: 10px;
     margin: 10px;
     background: #e6e6e6;
-    border: 1px solid black;
 }
 
 .img-container-card-img {
@@ -131,7 +132,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 1.5em;
+    font-size: 1.5em !important;
     height: 100%;
 }
 .intranet-container p {
@@ -205,4 +206,66 @@ body {
     color: white;
     font-weight: 400;
     font-size: 1.1em;
+}
+
+.notification-button {
+    width: 10%;
+    margin: 10px;
+    font-weight: 800;
+    font-size: 15px;
+    background: rgb(53, 255, 53);
+    cursor: pointer;
+}
+
+#homepage-btn {
+    cursor: pointer;
+    background: #333;
+    font-size: 1.23em;
+    width: 50px;
+}
+
+.fa-home {
+    color: white;
+}
+
+.snapTemplate {
+    cursor: pointer !important;
+}
+
+.studio-ivan {
+    padding-top: 10px;
+}
+
+#card-btn {
+    cursor: pointer;
+}
+
+#mainImage {
+    margin: 10px;
+}
+
+.studio-background {
+    background-image: url('./photo_studio_back/back.jpg');
+    background-size: cover; 
+    background-position: center;
+    height: calc(100vh - 50px);
+}
+
+.studio-title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.studio-title h1 {
+    font-size: 30px;
+}
+
+#player {
+    border: 2px solid white;
+}
+
+#cnvFood {
+    border: 2px solid white;
 }
