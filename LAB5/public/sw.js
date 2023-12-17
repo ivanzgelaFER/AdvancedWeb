@@ -118,14 +118,23 @@ self.addEventListener("notificationclick", function (event) {
     console.log("notificationclick", event);
 
     event.waitUntil(
-        clients.matchAll().then(function (clis) {
-            clis.forEach((client) => {
-                client.navigate(notification.data.redirectUrl);
-                client.focus();
-            });
-            notification.close();
-        })
-    );
+        clients.matchAll({ type: "window", includeUncontrolled: true })
+            .then(function (clis) {
+                if (clis && clis.length > 0) {
+                    clis.forEach(async (client) => {
+                        await client.navigate(notification.data.redirectUrl);
+                        return client.focus();
+
+                    });
+                } else if (clients.openWindow) {
+                    return clients
+                        .openWindow(notification.data.redirectUrl)
+                        .then((windowClient) =>
+                            windowClient ? windowClient.focus() : null
+                        );
+                }
+            }
+        ));
 });
 
 self.addEventListener("notificationclose", function (event) {
