@@ -5,6 +5,7 @@ const multer = require("multer");
 const fse = require('fs-extra');
 const httpPort = 80;
 const webpush = require('web-push');
+const NOVE_SLIKE = path.join(__dirname, "public", "uploads");  
 
 const app = express();
 app.use(express.json());
@@ -20,12 +21,10 @@ app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-const UPLOAD_PATH = path.join(__dirname, "public", "uploads");
-
-var uploadSnaps = multer({
+var pohrani = multer({
     storage:  multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, UPLOAD_PATH);
+            cb(null, NOVE_SLIKE);
         },
         filename: function (req, file, cb) {
             let fn = file.originalname.replaceAll(":", "-");
@@ -34,8 +33,9 @@ var uploadSnaps = multer({
     })
 }).single("image");
 
+
 app.post("/pohraniSliku",  function (req, res) {
-    uploadSnaps(req, res, async function(err) {
+    pohrani(req, res, async function(err) {
         if (err) {
             console.log(err);
             res.json({
@@ -50,10 +50,13 @@ app.post("/pohraniSliku",  function (req, res) {
         }
     });
 });
+
+
+
 app.get("/snaps", function (req, res) {
-    let files = fse.readdirSync(UPLOAD_PATH);
+    let files = fse.readdirSync(NOVE_SLIKE);
     files = files.reverse().slice(0, 10);
-    console.log("In", UPLOAD_PATH, "there are", files);
+    console.log("In", NOVE_SLIKE, "there are", files);
     res.json({
         files
     });
@@ -85,15 +88,18 @@ async function pushNotifikacija(snapTitle) {
     'ZeINuYLv26FhUplmi-oUmZeebzBsxpMvvTBBC8-DePg');
 
     subscriptions.forEach(async sub => {
+
         try {
             await webpush.sendNotification(sub, JSON.stringify({
                 title: 'Nova slika za iksicu uslikana',
                 body: 'Uslikana je slika pod nazivom: ' + snapTitle,
                 redirectUrl: '/intranet.html'
               }));    
+
         } catch (error) {
             console.error(error);
         }
+        
     });
 }
 
