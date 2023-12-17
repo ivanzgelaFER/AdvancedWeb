@@ -81,10 +81,7 @@
                     afterSnap.classList.add("d-none");
                     if (!("mediaDevices" in navigator)) {
                         // TODO
-                        const fileUploadInput = document.createElement('input');
-                        fileUploadInput.type = 'file';
-                        fileUploadInput.accept = 'image/*'; // Accept only image files
-                        fileUploadInput.style.display = 'none';
+                        // fallback
                     } else {
                         navigator.mediaDevices
                             .getUserMedia({ video: true, audio: false })
@@ -122,7 +119,7 @@
                     .addEventListener("click", function (event) {
                         event.preventDefault();
                         if (!snapName.value.trim()) {
-                            alert("Give it a cathcy name!");
+                            alert("Dodaj ime slici!");
                             return false;
                         }
                         if (
