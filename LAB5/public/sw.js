@@ -8,8 +8,7 @@ const filesToCache = [
     "offline.html",
     "404.html",
     "photo_studio.html",
-    "ferweb/promocije.png",
-    "site.css",
+    "/ferweb/promocije.png",
     "https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap",
     "https://fonts.gstatic.com/s/firasans/v11/va9E4kDNxMZdWfMOD5Vvl4jLazX3dA.woff2",
     "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css",
@@ -96,8 +95,8 @@ let sinkroniziraj = async function () {
             formData.append("ts", snap.ts);
             formData.append("title", snap.title);
             formData.append("image", snap.image, snap.id + ".png");
-            
-            fetch("/saveSnap", {
+
+            fetch("/pohraniSliku", {
                 method: "POST",
                 body: formData,
             })
