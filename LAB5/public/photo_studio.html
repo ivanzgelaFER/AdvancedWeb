@@ -80,8 +80,11 @@
                     afterSnap.classList.remove("d-flex", "flex-column", "align-items-center");
                     afterSnap.classList.add("d-none");
                     if (!("mediaDevices" in navigator)) {
-                        // fallback to file upload button, ili sl.
-                        // vidjet i custom API-je: webkitGetUserMedia i mozGetUserMedia
+                        // TODO
+                        const fileUploadInput = document.createElement('input');
+                        fileUploadInput.type = 'file';
+                        fileUploadInput.accept = 'image/*'; // Accept only image files
+                        fileUploadInput.style.display = 'none';
                     } else {
                         navigator.mediaDevices
                             .getUserMedia({ video: true, audio: false })
@@ -89,7 +92,7 @@
                                 player.srcObject = stream;
                             })
                             .catch((err) => {
-                                alert("Media stream not working");
+                                alert("Ne radi kamera ili nije podržana u pregledinku!");
                                 console.log(err);
                             });
                     }
@@ -142,7 +145,7 @@
                                 })
                                 .then((swRegistration) => {
                                     return swRegistration.sync.register(
-                                        "sync-snaps"
+                                        "sinkronizacija"
                                     );
                                 })
                                 .then(() => {

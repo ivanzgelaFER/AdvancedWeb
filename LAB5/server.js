@@ -46,7 +46,7 @@ app.post("/saveSnap",  function (req, res) {
             });
         } else {
             res.json({ success: true, id: req.body.id });
-            await sendPushNotifications(req.body.title);
+            await pushNotifikacija(req.body.title);
         }
     });
 });
@@ -61,10 +61,10 @@ app.get("/snaps", function (req, res) {
 
 
 let subscriptions = [];
-const SUBS_FILENAME = 'pretplate.json';
+const PRETPLATE = 'pretplate.json';
 
 try {
-    subscriptions = JSON.parse(fs.readFileSync(SUBS_FILENAME));
+    subscriptions = JSON.parse(fs.readFileSync(PRETPLATE));
 } catch (error) {
     console.error(error);    
 }
@@ -72,17 +72,17 @@ try {
 app.post("/saveSubscription", function(req, res) {
     let sub = req.body.sub;
     subscriptions.push(sub);
-    fs.writeFileSync(SUBS_FILENAME, JSON.stringify(subscriptions));
+    fs.writeFileSync(PRETPLATE, JSON.stringify(subscriptions));
     res.json({
         success: true
     });
 });
 
-async function sendPushNotifications(snapTitle) {
+async function pushNotifikacija(snapTitle) {
 
-    webpush.setVapidDetails('mailto:ivan.zgela@fer.hr', 
-    'BL1oXiSXCjKRPParkSNUP7ik7Ltl3RpPUxurkh7ro4rdpNLylON7f3xxZryBF_xN8CqxvemlVdT2EJGH33qe5iw', 
-    '4B9u-sA9uJ8zISw3FXlsbbsaVixK3NJn6o_BZshEZnI');
+    webpush.setVapidDetails('mailto:ivanzgela7755@gmail.com', 
+    'BLCoHZI6x0-BCRYt508t0ZJmI9S4qWrIEy99lZ2lnNjbM7ttEM472g0Pc2IO6tkGUeiJFyytvqCyl4ssFVDXiek', 
+    'ZeINuYLv26FhUplmi-oUmZeebzBsxpMvvTBBC8-DePg');
 
     subscriptions.forEach(async sub => {
         try {

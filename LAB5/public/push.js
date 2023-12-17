@@ -37,7 +37,7 @@ async function setupPushSubscription() {
         let sub = await reg.pushManager.getSubscription();
         if (sub === null) {
             var publicKey =
-                "BL1oXiSXCjKRPParkSNUP7ik7Ltl3RpPUxurkh7ro4rdpNLylON7f3xxZryBF_xN8CqxvemlVdT2EJGH33qe5iw";
+                "BLCoHZI6x0-BCRYt508t0ZJmI9S4qWrIEy99lZ2lnNjbM7ttEM472g0Pc2IO6tkGUeiJFyytvqCyl4ssFVDXiek";
             sub = await reg.pushManager.subscribe({
                 userVisibleOnly: true,
                 applicationServerKey: urlBase64ToUint8Array(publicKey)

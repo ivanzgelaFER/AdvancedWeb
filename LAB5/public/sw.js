@@ -82,12 +82,12 @@ self.addEventListener("fetch", (event) => {
 //background sync
 self.addEventListener("sync", function (event) {
     console.log("Background sync lab5!", event);
-    if (event.tag === "sync-snaps") {
-        event.waitUntil(syncSnaps());
+    if (event.tag === "sinkronizacija") {
+        event.waitUntil(sinkroniziraj());
     }
 });
 
-let syncSnaps = async function () {
+let sinkroniziraj = async function () {
     entries().then((entries) => {
         entries.forEach((entry) => {
             let snap = entry[1];
@@ -96,6 +96,7 @@ let syncSnaps = async function () {
             formData.append("ts", snap.ts);
             formData.append("title", snap.title);
             formData.append("image", snap.image, snap.id + ".png");
+            
             fetch("/saveSnap", {
                 method: "POST",
                 body: formData,
@@ -119,7 +120,6 @@ let syncSnaps = async function () {
 
 self.addEventListener("notificationclick", function (event) {
     let notification = event.notification;
-    console.log("notificationclick", event);
 
     event.waitUntil(
         clients.matchAll({ type: "window", includeUncontrolled: true })
