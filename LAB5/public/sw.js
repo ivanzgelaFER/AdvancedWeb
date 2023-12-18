@@ -16,6 +16,7 @@ const filesToCache = [
 
 const vrsta = "static-cache-v2";
 
+
 //install + cache
 self.addEventListener('install', event => {
     console.log("Installing lab5 service worker");
@@ -24,6 +25,7 @@ self.addEventListener('install', event => {
             return cache.addAll(filesToCache);
         })
     );
+    
 });
 
 //activate
