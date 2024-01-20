@@ -1,6 +1,7 @@
 <template>
   <div class="exam-container">
     <h1>Prethodni ispiti koje ste pisali na Edgaru</h1>
+    <p>U slučaju da se ispiti ne prikazuju pričekajte trenutak!</p>
     <div class="exams-container-cards">
       <exam-card
         v-for="exam in allExams"

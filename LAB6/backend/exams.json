@@ -16,4 +16,23 @@
     "dvorana": "D273",
     "ostvareniBodovi": "16",
     "ukupnoBodova": "20"
+},
+{
+    "ispit": "Međuispit 2022/2023",
+    "predmet": "Napredni razvoj programske potpore za web",
+    "dvorana": "A111",
+    "ostvareniBodovi": "9",
+    "ukupnoBodova": "20"
+},{
+    "ispit": "Međuispit 2022/2023",
+    "predmet": "Napredni algoritmi i strukture podataka",
+    "dvorana": "D2",
+    "ostvareniBodovi": "39",
+    "ukupnoBodova": "40"
+},{
+    "ispit": "Međuispit 2022/2023",
+    "predmet": "Napredne baze podataka",
+    "dvorana": "D1",
+    "ostvareniBodovi": "13",
+    "ukupnoBodova": "20"
 }]
