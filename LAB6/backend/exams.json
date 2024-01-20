@@ -1,16 +1,19 @@
 [{
+    "id": 1,
     "ispit": "Međuispit 2023/2024",
     "predmet": "Napredni razvoj programske potpore za web",
     "dvorana": "A110",
     "ostvareniBodovi": "14",
     "ukupnoBodova": "20"
 },{
+    "id": 2,
     "ispit": "Međuispit 2023/2024",
     "predmet": "Napredni algoritmi i strukture podataka",
     "dvorana": "A310",
     "ostvareniBodovi": "34",
     "ukupnoBodova": "40"
 },{
+    "id": 3,
     "ispit": "Međuispit 2023/2024",
     "predmet": "Napredne baze podataka",
     "dvorana": "D273",
@@ -18,18 +21,21 @@
     "ukupnoBodova": "20"
 },
 {
+    "id": 4,
     "ispit": "Međuispit 2022/2023",
     "predmet": "Napredni razvoj programske potpore za web",
     "dvorana": "A111",
     "ostvareniBodovi": "9",
     "ukupnoBodova": "20"
 },{
+    "id": 5,
     "ispit": "Međuispit 2022/2023",
     "predmet": "Napredni algoritmi i strukture podataka",
     "dvorana": "D2",
     "ostvareniBodovi": "39",
     "ukupnoBodova": "40"
 },{
+    "id": 6,
     "ispit": "Međuispit 2022/2023",
     "predmet": "Napredne baze podataka",
     "dvorana": "D1",

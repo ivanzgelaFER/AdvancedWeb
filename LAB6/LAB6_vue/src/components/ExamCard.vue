@@ -7,6 +7,11 @@
             <p>Ukupno bodova: {{ ukupnoBodova }}</p>
             <p>Prosjek: {{ ostvareniBodovi / ukupnoBodova }} %</p>
         </div>
+        <div>
+            <button class="delete-btn" @click="deleteExam">
+                Delete
+            </button>
+        </div>
     </div>
 </template>
 
@@ -31,5 +36,9 @@ export default {
     margin: 10px;
     padding: 10px;
 }
-
+.delete-btn {
+    width: 200px;
+    height: 50px;   
+    background-color: red;
+}
 </style>

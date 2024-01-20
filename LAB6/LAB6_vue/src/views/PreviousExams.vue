@@ -1,11 +1,12 @@
 <template>
   <div class="exam-container">
     <h1>Prethodni ispiti koje ste pisali na Edgaru</h1>
-    <p>U slučaju da se ispiti ne prikazuju pričekajte trenutak!</p>
+    <p>U slučaju da se ispiti ne prikazuju pričekajte (render je spor)!</p>
     <div class="exams-container-cards">
       <exam-card
         v-for="exam in allExams"
         v-bind="exam"
+        @delete-exam="deleteExam"
       ></exam-card>
     </div>
   </div>
@@ -32,6 +33,9 @@ methods: {
       console.error(error);
     }
   },
+  deleteExam(args) {
+      console.log("deleting exame", args, this.allExams.length);
+    },
 },
 async mounted() {
   await this.refreshExams();
