@@ -5,7 +5,7 @@
             <p>Dvorana: {{ dvorana }}</p>
             <p>Ostvareni bodovi: {{ ostvareniBodovi }}</p>
             <p>Ukupno bodova: {{ ukupnoBodova }}</p>
-            <p>Prosjek: {{ ostvareniBodovi / ukupnoBodova }} %</p>
+            <p>Postotak: {{ ostvareniBodovi / ukupnoBodova }} %</p>
         </div>
         <div>
             <button class="delete-btn" @click="deleteExam">
@@ -17,13 +17,20 @@
 
 <script>
 export default {
-  props: [
-    "ispit",
-    "predmet",
-    "dvorana",
-    "ostvareniBodovi",
-    "ukupnoBodova",
-  ]
+    emits: ["deleteExam"],
+    props: [
+        "id",
+        "ispit",
+        "predmet",
+        "dvorana",
+        "ostvareniBodovi",
+        "ukupnoBodova",
+    ],
+    methods: {
+        deleteExam() {
+            this.$emit("deleteExam", { id: this.id });
+        },
+    }
 };
 </script>
 
@@ -37,8 +44,9 @@ export default {
     padding: 10px;
 }
 .delete-btn {
-    width: 200px;
+    width: 100px;
     height: 50px;   
     background-color: red;
+    cursor: pointer;
 }
 </style>

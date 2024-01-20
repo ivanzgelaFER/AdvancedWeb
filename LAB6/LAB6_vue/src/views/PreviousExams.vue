@@ -6,6 +6,7 @@
       <exam-card
         v-for="exam in allExams"
         v-bind="exam"
+        :key="exam.id"
         @delete-exam="deleteExam"
       ></exam-card>
     </div>
@@ -34,8 +35,12 @@ methods: {
     }
   },
   deleteExam(args) {
-      console.log("deleting exame", args, this.allExams.length);
-    },
+    console.log("deleting exame", args, this.allExams.length);
+    this.allExams = this.allExams.filter((x) => x.id !== args.id);
+      if (this.selectedRecipe && this.selectedRecipe.id === args.id) {
+        this.selectedRecipe = null;
+      }
+  },
 },
 async mounted() {
   await this.refreshExams();
