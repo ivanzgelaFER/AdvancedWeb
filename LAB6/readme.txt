@@ -13,11 +13,11 @@ Lista svojstava:
    	i imamo mogućnost povratka na početnu stranicu preko linka na stranici
 8.(barem) dvije komponente:
 	-komponenta bez stanja: NAPRAVLJENO, nalazi se u components/ExamCard.vue koriste se props koje dobijem iz jednog ispita kao što su: ispit, predmet, dvorana, ostvareniBodovi, ukupnoBodova
-   -komponenta sa stanjem: 
+   -komponenta sa stanjem: NAPRAVLJENO, komponenta conponents/TheWelcome.vue ima prikaz trenutno prijavljenog korisnika koji se dohvati pomoću globalnog stanja iz storea i zatim prikazuje na ekranu
 9.barem jedna komponenta mora emitirati barem jedan event (emitiranje događaja): komponenta ExamCard.vue emitira brisanje ispita svom roditelju koji je PreviousExams.vue (konkretno emits: ["deleteExam"] koji
 	je napisan unutar ExamCArd.vue gdje se klikom na gumb briše određeni ispit iz liste prikazanih ispita, ali ne briše se trajno već samo iz "privremene" baze podataka, ako se stranica osvježi ponovno će 
    se pojaviti obrisani ispiti)
-10.store (Pinia): 
+10.store (Pinia): NAPRAVLJENO, definiram stores/auth.js (userAuthStore) za prijavu korisnika i demonstraciju globalnog stanja
 11.asinkroni dohvat podataka s backenda: NAPRAVLJENO, slično kao i kod s predavanja. Dodao sam u svoj projekt folder backend gdje imam get zahtjev: "app.get("/exams", async function (req, res) {...}"
    Ovim get zahtjevom radim dohvat prethodno napisanih ispita, koji se nalaze u exams.json te se ti podatci parisiraju i šalju kao odgovor na zahtjev na klijentsku stranu. Kanije su isti podatci
    prikazani na stranici My previous exams gdje ih obrađujem i baratam njima.
