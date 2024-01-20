@@ -40,17 +40,21 @@ methods: {
       if (this.selectedRecipe && this.selectedRecipe.id === args.id) {
         this.selectedRecipe = null;
       }
+    },
   },
-},
-async mounted() {
-  await this.refreshExams();
-},
+  async mounted() {
+    await this.refreshExams();
+  },
 };
 </script>
 
 <style scoped>
 .exam-container {
   padding-top: 60px;
+}
+
+.exams-container-cards > div{
+  background-color: rgb(236, 236, 236);
 }
  
 </style>
