@@ -8,6 +8,4 @@
 .tickets-container {
     padding-top: 60px;
 }
- 
- 
 </style>

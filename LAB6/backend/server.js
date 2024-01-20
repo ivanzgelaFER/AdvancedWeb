@@ -3,18 +3,18 @@ const path = require("path");
 var cors = require("cors");
 
 const fs = require("fs");
-let jsonRecipes;
+let jsonExams;
 fs.readFile("exams.json", function (err, data) {
   var jsonData = data;
-  jsonRecipes = JSON.parse(jsonData);
+  jsonExams = JSON.parse(jsonData);
 });
 
 const app = express();
 app.use(express.static('public'));
 app.use(cors());
 
-app.get("/exams", function (req, res) {
-  res.json(jsonRecipes);
+app.get("/exams", async function (req, res) {
+  res.json(jsonExams);
 });
  
 /*
@@ -31,7 +31,7 @@ app.listen(8888, "localhost", function () {
 const externalUrl = process.env.RENDER_EXTERNAL_URL;
 const port = externalUrl && process.env.PORT ? parseInt(process.env.PORT) : 8080;
 if (externalUrl) {
-  const hostname = '0.0.0.0'; //ne 127.0.0.1
+  const hostname = '0.0.0.0';
   app.listen(port, hostname, () => {
     console.log(`Server locally running at http://${hostname}:${port}/ and from outside on ${externalUrl}`);
 })} else {  
