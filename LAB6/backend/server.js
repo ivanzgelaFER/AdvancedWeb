@@ -16,10 +16,7 @@ app.use(cors());
 app.get("/exams", function (req, res) {
   res.json(jsonRecipes);
 });
-const hostname = 'localhost';
-const port = 8888
-app.listen(port, hostname, () => {
-console.log(`Server locally running at http://${hostname}:${port}`)});
+ 
 /*
 app.listen(8888, "localhost", function () {
   console.log(
@@ -30,3 +27,16 @@ app.listen(8888, "localhost", function () {
   );
 });
 */
+
+const externalUrl = process.env.RENDER_EXTERNAL_URL;
+const port = externalUrl && process.env.PORT ? parseInt(process.env.PORT) : 8080;
+if (externalUrl) {
+  const hostname = '0.0.0.0'; //ne 127.0.0.1
+  app.listen(port, hostname, () => {
+    console.log(`Server locally running at http://${hostname}:${port}/ and from outside on ${externalUrl}`);
+})} else {  
+    const hostname = 'localhost';
+    app.listen(port, hostname, () => {
+    console.log(`Server locally running at http://${hostname}:${port}`);
+  })
+}
