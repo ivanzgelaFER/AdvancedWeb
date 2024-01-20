@@ -3,6 +3,7 @@
       <nav>
         <router-link class="link-dec" to="/">Home</router-link>
         <router-link class="link-dec" to="/myPreviousExams">My previous exams</router-link>
+        <router-link class="link-dec" to="/tickets">My tickets</router-link>
        </nav>
     </div>
   </template>
@@ -15,6 +16,7 @@
   
   <style scoped>
   .app-header {
+    z-index: 2000;
     height: 60px;
     width: 100%;
     color: white;

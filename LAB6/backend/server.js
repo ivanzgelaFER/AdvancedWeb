@@ -4,28 +4,16 @@ var cors = require("cors");
 
 const fs = require("fs");
 let jsonRecipes;
-fs.readFile("recipes.json", function (err, data) {
+fs.readFile("exams.json", function (err, data) {
   var jsonData = data;
   jsonRecipes = JSON.parse(jsonData);
-
-  jsonRecipes = jsonRecipes
-    .filter((x) => Math.random() > 0.99)
-    .map(function (item, idx) {
-      return {
-        id: idx + 1,
-        ...item,
-        ingredients: item.ingredients ? item.ingredients.split("\n") : [],
-      };
-    })
-    .reverse();
-  console.log(jsonRecipes.length + " recipes parsed... eg.", jsonRecipes[0]);
 });
 
 const app = express();
 app.use(express.static('public'));
 app.use(cors());
 
-app.get("/recipes", function (req, res) {
+app.get("/exams", function (req, res) {
   res.json(jsonRecipes);
 });
 const hostname = 'localhost';
