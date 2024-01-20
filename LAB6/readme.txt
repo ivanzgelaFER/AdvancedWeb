@@ -1,10 +1,10 @@
 URL aplikacije: "https://web2-lab6-cl21.onrender.com/"
 
 Lista svojstava:
-1.interpolation/one-way binding: 
-2.two-way binding:
+1.interpolation/one-way binding: NAPRAVLJENO, nalazi se u views/Tickes.vue. Kad korisnik unese predmet za koji želi postaviti ticket varijabla subject je jednosmjerno povezana s inputom (v-bind="subject") 
+2.two-way binding: NAPRAVLJENO, nalazi se u views/Tickes.vue. Kad korisnik unosi pitanje profesoru varijable ticket je dvosmjerno povezana s inputom, ažurira se (pomoću v-model) i prikazuje njena vrijednost dolje (dinamička promjena)
 3.methods: NAPRAVLJENO, nalaze se metode u views/PreviousExams.vue (npr. refreshExams za asinkroni dohvat prethodno napisanih ispita, deleteExam za brisanje ispita)  
-4.computed properties:
+4.computed properties: NAPRAVLJENO, nalazi se u Login.vue 
 5.barem jedan scoped style: NAPRAVLJENO, koristim na više mjesta views/PreviousExams.vue, views/NotFound.vue... Za potrebe uređivanja stranice sam za svaki view koristio <style scoped>...
 6.koristiti barem jedan lifecycle hook: NAPRAVLJENO, koristim mounted hook za prikaz trenutnog vremena u Edgaru, nalazi se components/TheWelcome.vue u script dijelu
 7.routing: 

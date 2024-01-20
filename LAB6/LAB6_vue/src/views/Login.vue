@@ -8,7 +8,7 @@
             <div class="form-container">
                 <form @submit.prevent="login">
                   <div class="input-container">
-                    <label class="">Login</label>
+                    <label>Login</label>
                     <div>
                         <div>
                             <input

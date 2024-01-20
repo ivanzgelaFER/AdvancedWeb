@@ -48,5 +48,6 @@ export default {
     height: 50px;   
     background-color: red;
     cursor: pointer;
+    color: white;
 }
 </style>
