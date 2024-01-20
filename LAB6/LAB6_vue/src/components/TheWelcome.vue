@@ -58,7 +58,6 @@ export default {
   },
   mounted() {
     window.setInterval(() => {
-       
       this.timer = new Date().toLocaleTimeString("hr-HR");
     }, 1000);
   },

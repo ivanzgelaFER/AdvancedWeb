@@ -1,25 +1,77 @@
 <template>
-    <div class="d-flex justify-content-center p-5">
-      <small-card>
-        <h3>Dear unknown user, please login</h3>
-        <form @submit.prevent="login">
-          <div class="form-group row">
-            <label class="col-4 col-form-label">Login</label>
-            <div class="col-8">
-              <input
-                class="form-control"
-                placeholder="username"
-                v-model.trim="username"
-              />
+    <div class="login-container">
+        <div>
+            <div>
+                <h3>Prijavi se kako bi mogao dalje nastaviti</h3>
+                <p>Ovo je demonstracija prijave kako bi se ostvarilo globalno stanje</p>
             </div>
-          </div>
-          <div class="d-flex justify-content-center">
-            <button class="btn btn-success m-3" type="submit">Let me in!</button>
-          </div>
-        </form>
-      </small-card>
+            <div class="form-container">
+                <form @submit.prevent="login">
+                  <div class="input-container">
+                    <label class="">Login</label>
+                    <div>
+                        <div>
+                            <input
+                              placeholder="username"
+                              v-model.trim="username"
+                            />
+                        </div>
+                        <div>
+                            <input
+                                type="password"
+                                placeholder="password"
+                                v-model="password"
+                            />
+                        </div>
+                    </div>
+                  </div>
+                  <div class=" ">
+                    <button class="btn btn-success m-3" type="submit">Prijavi se</button>
+                  </div>
+                </form>
+            </div>
+        </div>
     </div>
   </template>
+<style scoped>
+.login-container {
+    padding-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 1.3rem !important;
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-container > form {
+    padding: 10px;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1.9rem;
+    border: 1px solid black;
+    
+}
+</style>
   
   <script>
   import { mapActions, mapState } from "pinia";
