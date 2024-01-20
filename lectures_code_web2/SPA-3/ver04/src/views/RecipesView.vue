@@ -39,7 +39,7 @@ export default {
   methods: {
     async refreshRecipes() {
       try {
-        let response = await fetch("http://127.0.0.1:8888/recipes");
+        let response = await fetch("http://localhost:8888/recipes");
         if (response.ok) {
           this.allRecipes = await response.json();
         } else {

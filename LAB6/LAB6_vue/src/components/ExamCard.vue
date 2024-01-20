@@ -21,6 +21,7 @@ export default {
   ]
 };
 </script>
+
 <style scoped>
 .card-container {
     display: flex;
