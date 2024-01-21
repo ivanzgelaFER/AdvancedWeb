@@ -30,11 +30,15 @@ const router = createRouter({
       name: "login",
       component: () => import('../views/Login.vue'),
     },
-    { 
-      path: '/:pathMatch(.*)*',
-      name: "NotFound",
-      component: () => import('../views/NotFound.vue'),
+    {
+      path: "/:pathMatch(.*)*",
+      redirect: "/404"
     },
+    {
+        path: "/404",
+        name: "404",
+        component: () => import("../views/NotFound.vue")
+    }
   ]
 });
 
