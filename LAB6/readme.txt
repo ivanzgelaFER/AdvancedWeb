@@ -3,6 +3,8 @@ URL aplikacije: "https://web2-lab6-cl21.onrender.com/"
 Napomena: -prvo je potrebno prijaviti se (nije postavljena validacija, ali je obavezno unijeti username i password)
    		  npr. username: admin, password: admin
           -prilikom dohvata prethodnih ispita malo treba pričekati dohvat jer je postoji zaseban backend s kojeg se asinkrono dobivaju podatci, a render je jako spor :(
+          -dohvat prethodno napisanih ispita, dohvat na backend serveru moguće testirati: "https://web2-lab6-backend-yvvu.onrender.com/exams"
+          -na dnu upute za lokalno pokretanje
 
 Lista svojstava:
 1.interpolation/one-way binding: NAPRAVLJENO, interpolation korišten za prikaz trenutnog vremena components/TheWelcome.vue za varijablu this.timer, za one way binding nalazi se u views/Tickes.vue. 
@@ -31,3 +33,15 @@ Lista svojstava:
    Ovim get zahtjevom radim dohvat prethodno napisanih ispita, koji se nalaze u exams.json te se ti podatci parisiraju i šalju kao odgovor na zahtjev na klijentsku stranu. Kasnije su isti podatci
    prikazani na stranici My previous exams gdje ih obrađujem i baratam njima.
 
+             
+Upute za lokalno pokretanje:
+backend: 1. pozicionirati se u folder "/backend"
+         2. npm install
+			3. npm start
+         -ovo je url na kojem lokalno možemo pristupiti backend dijelu: "http://localhost:8080"
+
+frontend: 1. pozicionirati se u folder "/LAB6_vue"
+          2. npm install
+          3. npm run serve
+          4. također potrebno zamijeniti produkcijski url s lokalnim backendom u views/PreviousExams.vue url za fatch podataka (linija 27) ovime: "http://localhost:8080/exams"
+             
