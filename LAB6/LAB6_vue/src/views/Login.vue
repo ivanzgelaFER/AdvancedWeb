@@ -14,6 +14,9 @@
                             <input
                               placeholder="username"
                               v-model.trim="username"
+                              required
+                              name="username"
+                              autocomplete=username
                             />
                         </div>
                         <div>
@@ -21,6 +24,9 @@
                                 type="password"
                                 placeholder="password"
                                 v-model="password"
+                                required
+                                name="password"
+                                autocomplete=current-password
                             />
                         </div>
                     </div>
@@ -80,6 +86,7 @@
     data() {
       return {
         username: "",
+        password: "",
       };
     },
     computed: {

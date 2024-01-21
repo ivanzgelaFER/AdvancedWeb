@@ -25,7 +25,7 @@ const router = createRouter({
       name: 'exam',
       component: () => import('../views/Exam.vue')
     },
-    { path: "/:catchAll(.*)",
+    { path: "/:catchAll(.*)*",
       name: "NotFound",
       component: () => import('../views/NotFound.vue'),
     },
@@ -37,6 +37,7 @@ const router = createRouter({
   ]
 });
 
+/*
 router.beforeEach(async (to) => {
   const publicPages = ["/login"];
   const authRequired = !publicPages.includes(to.path);
@@ -47,5 +48,5 @@ router.beforeEach(async (to) => {
     return "/login";
   }
 });
-
+*/
 export default router

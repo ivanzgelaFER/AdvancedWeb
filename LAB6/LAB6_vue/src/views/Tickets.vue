@@ -8,7 +8,7 @@
       <h4>Ovo je demonstracija za two-way binding</h4>
       <label>Postavi pitanje profesoru: </label>
       <input class="input-tickets" type="text" v-model="ticket">
-      <p>Trenutno postavljeni ticket glasi: {{ ticket }}</p>
+      <p>Trenutno postavljeni ticket glasi: <b class="ticket-text">{{ ticket }}</b></p>
     </div>
   </template>
 
@@ -41,5 +41,9 @@ export default {
     border-radius: 5px;
     padding: 10px;
     margin: 10px;
+}
+
+.ticket-text {
+  text-decoration: underline;
 }
 </style>
