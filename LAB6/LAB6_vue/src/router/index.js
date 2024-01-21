@@ -31,11 +31,11 @@ const router = createRouter({
       component: () => import('../views/Login.vue'),
     },
     { 
-      path: '/:pathMatch(.*)',
-      name: "notFound",
+      path: "/:catchAll(.*)*",
+      name: "NotFound",
       component: () => import('../views/NotFound.vue'),
     },
-    
+
   ]
 });
 
